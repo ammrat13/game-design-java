@@ -36,6 +36,7 @@ public class GameManager extends JPanel implements KeyListener {
 		gss.put("GamePlay", new GamePlayScene(this));
 		setActive("GamePlay");
 		
+		// Update every frame
 		Timer t = new Timer();
 		t.schedule(new TimerTask() {
 			@Override
@@ -43,6 +44,8 @@ public class GameManager extends JPanel implements KeyListener {
 				update();
 			}
 		}, 0, 20);
+		
+		// Play music
 	}
 	
 	public void setActive(String ags){
