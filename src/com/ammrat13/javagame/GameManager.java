@@ -26,6 +26,8 @@ public class GameManager extends JPanel implements KeyListener {
 	public final int WIDTH;
 	public final int HEIGHT;
 	
+	private long time;
+	
 	// The sound playing
 	private Clip clip;
 	private static final String BG_SOUND = "sound/MainMusic.wav";
@@ -42,6 +44,8 @@ public class GameManager extends JPanel implements KeyListener {
 		HEIGHT = h;
 		keysDown = new HashSet<>();
 		
+		time = System.currentTimeMillis();
+		
 		gss = new HashMap<>();
 		gss.put("GamePlay", new GamePlayScene(this));
 		setActive("GamePlay");
@@ -53,7 +57,7 @@ public class GameManager extends JPanel implements KeyListener {
 			public void run() {
 				update();
 			}
-		}, 0, 1);
+		}, 0, 30);
 		
 		playSound(BG_SOUND, -1);
 	}
@@ -97,10 +101,13 @@ public class GameManager extends JPanel implements KeyListener {
 	}
 	
 	private void update(){
-		// Key handling
-		for(int c : keysDown)
-			active.keyDown(c);
-		active.update();
+		// Update the scene
+		active.update(
+			Math.toIntExact((System.currentTimeMillis() - time) % Integer.MAX_VALUE),
+			keysDown
+		);
+		time = System.currentTimeMillis();
+		
 		this.repaint();
 	}
 	

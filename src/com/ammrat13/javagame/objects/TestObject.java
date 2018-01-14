@@ -5,6 +5,7 @@ import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Set;
 
 /**
  * An object that does nothing. For testing purposes.
@@ -21,10 +22,7 @@ public class TestObject implements GamePlaySceneObject {
 	}
 	
 	@Override
-	public void update(){}
-	
-	@Override
-	public void keyDown(int kCode){}
+	public void update(int dt, Set<Integer> kCodes){}
 	
 	@Override
 	public Vec getPos(){return pos;}

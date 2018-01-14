@@ -38,6 +38,15 @@ public class Vec {
 		return new Vec(c*this.x, c*this.y);
 	}
 	
+	/**
+	 * Returns a copy of this vector
+	 *
+	 * @return A copy of this vector
+	 */
+	public Vec copy(){
+		return new Vec(x,y);
+	}
+	
 	@Override
 	public int hashCode(){
 		return Double.hashCode(x*y);

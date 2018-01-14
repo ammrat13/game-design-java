@@ -6,6 +6,7 @@ import com.ammrat13.javagame.util.Vec;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.Set;
 
 /**
  * An object that does nothing, but it moves with keys. For testing purposes.
@@ -15,29 +16,30 @@ import java.awt.image.BufferedImage;
 
 public class TestMovingObject implements GamePlaySceneObject {
 	
-	private Vec pos;
+	private Vec x;
+	private Vec v;
 	
-	public TestMovingObject(double x, double y){
-		pos = new Vec(x,y);
+	public TestMovingObject(Vec xi, Vec vi){
+		x = xi.copy();
+		v = vi.copy();
 	}
 	
 	@Override
-	public void update(){}
-	
-	@Override
-	public void keyDown(int kCode){
-		if(kCode == KeyEvent.VK_LEFT)
-			pos = pos.add(new Vec(-.1,0));
-		if(kCode == KeyEvent.VK_RIGHT)
-			pos = pos.add(new Vec(.1,0));
-		if(kCode == KeyEvent.VK_UP)
-			pos = pos.add(new Vec(0,.1));
-		if(kCode == KeyEvent.VK_DOWN)
-			pos = pos.add(new Vec(0,-.1));
+	public void update(int dt, Set<Integer> kCodes){
+		System.out.println(dt);
+		if(kCodes.contains(KeyEvent.VK_LEFT))
+			v = v.add(new Vec(-.2, 0).mul(dt/1000.0));
+		if(kCodes.contains(KeyEvent.VK_RIGHT))
+			v = v.add(new Vec(.2, 0).mul(dt/1000.0));
+		if(kCodes.contains(KeyEvent.VK_UP))
+			v = v.add(new Vec(0, .2).mul(dt/1000.0));
+		if(kCodes.contains(KeyEvent.VK_DOWN))
+			v = v.add(new Vec(0, -.2).mul(dt/1000.0));
+		x = x.add(v.mul(dt));
 	}
 	
 	@Override
-	public Vec getPos(){return pos;}
+	public Vec getPos(){return x;}
 	
 	@Override
 	public BufferedImage render(){

@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * This scene contains the game itself.
@@ -29,7 +30,7 @@ public class GamePlayScene implements GameScene {
 		this.gm = gm;
 		
 		gpsos = new ArrayList<>();
-		gpsos.add(new TestMovingObject(0,0));
+		gpsos.add(new TestMovingObject(new Vec(0,0), new Vec(0,0)));
 		gpsos.add(new TestObject(0,0));
 	}
 	
@@ -40,17 +41,10 @@ public class GamePlayScene implements GameScene {
 	public void stop(){}
 	
 	@Override
-	public void update(){
+	public void update(int dt, Set<Integer> kCodes){
 		// Update each object
 		for(GamePlaySceneObject gpso : gpsos)
-			gpso.update();
-	}
-	
-	@Override
-	public void keyDown(int kCode){
-		// Give that key to each object
-		for(GamePlaySceneObject gpso : gpsos)
-			gpso.keyDown(kCode);
+			gpso.update(dt, kCodes);
 	}
 	
 	@Override
