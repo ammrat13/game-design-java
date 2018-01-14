@@ -9,6 +9,8 @@ package com.ammrat13.javagame.util;
 public class Vec {
 	
 	public static final Vec ZERO = new Vec(0,0);
+	public static final Vec IHAT = new Vec(1,0);
+	public static final Vec JHAT = new Vec(0,1);
 	
 	public double x;
 	public double y;

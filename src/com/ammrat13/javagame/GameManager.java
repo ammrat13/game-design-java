@@ -28,8 +28,6 @@ public class GameManager extends JPanel implements KeyListener {
 	
 	private long time;
 	
-	// The sound playing
-	private Clip clip;
 	private static final String BG_SOUND = "sound/MainMusic.wav";
 	
 	// Map of all the scenes we have
@@ -84,6 +82,8 @@ public class GameManager extends JPanel implements KeyListener {
 	 */
 	
 	private int playSound(String soundPath, int loops){
+		// The sound playing
+		Clip clip;
 		// Source: https://www.geeksforgeeks.org/play-audio-file-using-java/
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(new File(soundPath).getAbsoluteFile());

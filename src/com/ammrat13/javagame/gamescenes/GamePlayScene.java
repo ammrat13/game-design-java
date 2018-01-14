@@ -2,7 +2,7 @@ package com.ammrat13.javagame.gamescenes;
 
 import com.ammrat13.javagame.GameManager;
 import com.ammrat13.javagame.GameScene;
-import com.ammrat13.javagame.objects.TestMovingObject;
+import com.ammrat13.javagame.objects.Spaceship;
 import com.ammrat13.javagame.objects.TestObject;
 import com.ammrat13.javagame.util.Vec;
 
@@ -37,7 +37,7 @@ public class GamePlayScene implements GameScene {
 		gpsos.add(new TestObject(0,0));
 		
 		// Both player and the reference in gpsos point to the same object
-		player = new TestMovingObject(new Vec(0,0), new Vec(0,0));
+		player = new Spaceship(new Vec(0,0), new Vec(0,0), Math.toRadians(0));
 		gpsos.add(player);
 		
 		// Sort the objects by z value, so the ones with less get rendered first
@@ -47,6 +47,8 @@ public class GamePlayScene implements GameScene {
 				return Integer.compare(o1.getZ(), o2.getZ());
 			}
 		});
+		
+		start();
 	}
 	
 	@Override
@@ -59,9 +61,9 @@ public class GamePlayScene implements GameScene {
 	public void update(int dt, Set<Integer> kCodes){
 		// Update each object
 		for(GamePlaySceneObject gpso : gpsos)
-			gpso.update(dt, kCodes);
+			gpso.update(dt, kCodes, this);
 		// Don't forget the player
-		player.update(dt, kCodes);
+		player.update(dt, kCodes, this);
 	}
 	
 	@Override

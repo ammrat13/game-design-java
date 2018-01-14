@@ -13,7 +13,7 @@ import java.util.Set;
  */
 
 public interface GamePlaySceneObject {
-	void update(int dt, Set<Integer> kCodes);		// To be called every frame
+	void update(int dt, Set<Integer> kCodes, GamePlayScene gps);		// To be called every frame
 	Vec getPos();
 	BufferedImage render();
 	Vec renderOffset();

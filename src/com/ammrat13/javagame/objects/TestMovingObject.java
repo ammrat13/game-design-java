@@ -1,5 +1,6 @@
 package com.ammrat13.javagame.objects;
 
+import com.ammrat13.javagame.gamescenes.GamePlayScene;
 import com.ammrat13.javagame.gamescenes.GamePlaySceneObject;
 import com.ammrat13.javagame.util.Vec;
 
@@ -27,7 +28,7 @@ public class TestMovingObject implements GamePlaySceneObject {
 	}
 	
 	@Override
-	public void update(int dt, Set<Integer> kCodes){
+	public void update(int dt, Set<Integer> kCodes, GamePlayScene gps){
 		System.out.println(dt);
 		if(kCodes.contains(KeyEvent.VK_LEFT))
 			v = v.add(new Vec(-a, 0).mul(dt));
