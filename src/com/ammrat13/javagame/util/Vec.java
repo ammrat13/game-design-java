@@ -8,6 +8,8 @@ package com.ammrat13.javagame.util;
 
 public class Vec {
 	
+	public static final Vec ZERO = new Vec(0,0);
+	
 	public double x;
 	public double y;
 	
@@ -34,6 +36,11 @@ public class Vec {
 	 */
 	public Vec mul(double c){
 		return new Vec(c*this.x, c*this.y);
+	}
+	
+	@Override
+	public int hashCode(){
+		return Double.hashCode(x*y);
 	}
 	
 }
