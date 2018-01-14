@@ -28,7 +28,7 @@ public class GameManager extends JPanel implements KeyListener {
 	
 	// The sound playing
 	private Clip clip;
-	private static final String BG_SOUND = "MainMusic.wav";
+	private static final String BG_SOUND = "sound/MainMusic.wav";
 	
 	// Map of all the scenes we have
 	public Map<String, GameScene> gss;
