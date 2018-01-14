@@ -53,7 +53,7 @@ public class GameManager extends JPanel implements KeyListener {
 			public void run() {
 				update();
 			}
-		}, 0, 20);
+		}, 0, 1);
 		
 		setSound(BG_SOUND);
 	}
@@ -129,12 +129,12 @@ public class GameManager extends JPanel implements KeyListener {
 	
 	@Override
 	public void keyPressed(KeyEvent e){
-		keysDown.remove(e.getKeyCode());
+		keysDown.add(e.getKeyCode());
 	}
 	
 	@Override
 	public void keyReleased(KeyEvent e){
-		keysDown.add(e.getKeyCode());
+		keysDown.remove(e.getKeyCode());
 	}
 	
 }
