@@ -55,7 +55,7 @@ public class GameManager extends JPanel implements KeyListener {
 			}
 		}, 0, 1);
 		
-		setSound(BG_SOUND);
+		playSound(BG_SOUND, -1);
 	}
 	
 	/**
@@ -75,17 +75,18 @@ public class GameManager extends JPanel implements KeyListener {
 	 * Sets the background sound to play continuously
 	 *
 	 * @param soundPath The path of the sound to play
+	 * @param loops The number of loops to play the sound (-1 for forever)
 	 * @return The length of the sound
 	 */
 	
-	private int setSound(String soundPath){
+	private int playSound(String soundPath, int loops){
 		// Source: https://www.geeksforgeeks.org/play-audio-file-using-java/
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(new File(soundPath).getAbsoluteFile());
 			
 			clip = AudioSystem.getClip();
 			clip.open(ais);
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
+			clip.loop(loops);
 			
 			return (int) (1000 * ((double) ais.getFrameLength() / ais.getFormat().getFrameRate()));
 		} catch(UnsupportedAudioFileException | IOException | LineUnavailableException e){
@@ -93,22 +94,6 @@ public class GameManager extends JPanel implements KeyListener {
 		}
 		
 		return 0;
-	}
-	
-	/**
-	 * Interrupts the background sound and plays one loop of the sound provided.
-	 *
-	 * @param soundPath The path of the sound to play
-	 */
-	
-	public void interruptSound(String soundPath){
-		Timer s = new Timer();
-		s.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				setSound(BG_SOUND);
-			}
-		}, setSound(soundPath));
 	}
 	
 	private void update(){
