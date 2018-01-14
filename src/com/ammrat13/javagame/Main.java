@@ -10,8 +10,8 @@ import javax.swing.*;
 
 public class Main {
 	
-	public static final int WIDTH = 620;
-	public static final int HEIGHT = 480;
+	private static final int WIDTH = 620;
+	private static final int HEIGHT = 480;
 	
 	public static void main(String[] args){
 		JFrame mainFrame = new JFrame("Get Home");
