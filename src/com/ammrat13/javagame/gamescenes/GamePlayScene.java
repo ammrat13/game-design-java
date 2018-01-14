@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Set;
 
 /**
@@ -25,13 +27,26 @@ public class GamePlayScene implements GameScene {
 	
 	// All the objects in the game scene
 	private ArrayList<GamePlaySceneObject> gpsos;
+	// The main player
+	private GamePlaySceneObject player;
 	
 	public GamePlayScene(GameManager gm){
 		this.gm = gm;
 		
 		gpsos = new ArrayList<>();
-		gpsos.add(new TestMovingObject(new Vec(0,0), new Vec(0,0)));
 		gpsos.add(new TestObject(0,0));
+		
+		// Both player and the reference in gpsos point to the same object
+		player = new TestMovingObject(new Vec(0,0), new Vec(0,0));
+		gpsos.add(player);
+		
+		// Sort the objects by z value, so the ones with less get rendered first
+		Collections.sort(gpsos, new Comparator<GamePlaySceneObject>() {
+			@Override
+			public int compare(GamePlaySceneObject o1, GamePlaySceneObject o2) {
+				return Integer.compare(o1.getZ(), o2.getZ());
+			}
+		});
 	}
 	
 	@Override
@@ -45,6 +60,8 @@ public class GamePlayScene implements GameScene {
 		// Update each object
 		for(GamePlaySceneObject gpso : gpsos)
 			gpso.update(dt, kCodes);
+		// Don't forget the player
+		player.update(dt, kCodes);
 	}
 	
 	@Override
@@ -61,8 +78,8 @@ public class GamePlayScene implements GameScene {
 		// Flip vertically
 		g2d.transform(new AffineTransform(1, 0, 0, -1, 0, 0));
 		
-		// Make the first object the one that is centered
-		Vec fPosCorr = gpsos.get(0).getPos().mul(-1);
+		// Make the player the one that is centered
+		Vec fPosCorr = player.getPos().mul(-1);
 		for(GamePlaySceneObject gpso : gpsos){
 			g2d.drawImage(
 					gpso.render(),

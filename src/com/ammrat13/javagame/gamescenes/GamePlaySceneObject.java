@@ -17,4 +17,5 @@ public interface GamePlaySceneObject {
 	Vec getPos();
 	BufferedImage render();
 	Vec renderOffset();
+	int getZ();
 }

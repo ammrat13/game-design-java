@@ -41,4 +41,9 @@ public class TestObject implements GamePlaySceneObject {
 	@Override
 	public Vec renderOffset(){return new Vec(-5,-5);}
 	
+	@Override
+	public int getZ(){
+		return -1;
+	}
+	
 }
