@@ -20,8 +20,10 @@ public class GamePlayScene implements GameScene {
 	// The vector to add so (0,0) is the center of the screen
 	private final Vec corr;
 	
+	// Passed in
 	private GameManager gm;
 	
+	// All the objects in the game scene
 	private ArrayList<GamePlaySceneObject> gpsos;
 	
 	public GamePlayScene(GameManager gm){
@@ -40,18 +42,21 @@ public class GamePlayScene implements GameScene {
 	
 	@Override
 	public void update(){
+		// Update each object
 		for(GamePlaySceneObject gpso : gpsos)
 			gpso.update();
 	}
 	
 	@Override
 	public void keyDown(int kCode){
+		// Give that key to each object
 		for(GamePlaySceneObject gpso : gpsos)
 			gpso.keyDown(kCode);
 	}
 	
 	@Override
 	public BufferedImage render(){
+		// Render all the objects
 		BufferedImage ret = new BufferedImage(gm.WIDTH, gm.HEIGHT, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = (Graphics2D) ret.getGraphics();
 		

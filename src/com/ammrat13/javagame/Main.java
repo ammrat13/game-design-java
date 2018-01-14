@@ -17,6 +17,8 @@ public class Main {
 		JFrame mainFrame = new JFrame("Get Home");
 		
 		GameManager gm = new GameManager(WIDTH, HEIGHT);
+		gm.addKeyListener(gm);
+		gm.setFocusable(true);
 		mainFrame.add(gm);
 		
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
