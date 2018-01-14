@@ -1,6 +1,5 @@
 package com.ammrat13.javagame;
 
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 /**
