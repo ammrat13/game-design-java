@@ -31,7 +31,7 @@ public class GameManager extends JPanel implements KeyListener {
 	private static final String BG_SOUND = "sound/MainMusic.wav";
 	
 	// Map of all the scenes we have
-	public Map<String, GameScene> gss;
+	private Map<String, GameScene> gss;
 	private GameScene active;
 	
 	// To pass to the active scene
@@ -57,7 +57,7 @@ public class GameManager extends JPanel implements KeyListener {
 			}
 		}, 0, 30);
 		
-		playSound(BG_SOUND, -1);
+		getSoundClip(BG_SOUND).loop(-1); // Forever
 	}
 	
 	/**
@@ -74,14 +74,13 @@ public class GameManager extends JPanel implements KeyListener {
 	}
 	
 	/**
-	 * Sets the background sound to play continuously
+	 * Gets the clip for a sound.
 	 *
-	 * @param soundPath The path of the sound to play
-	 * @param loops The number of loops to play the sound (-1 for forever)
+	 * @param soundPath The path of the sound to get the clip for
 	 * @return The clip object for the sound
 	 */
 	
-	public Clip playSound(String soundPath, int loops){
+	public Clip getSoundClip(String soundPath){
 		// The sound playing
 		Clip clip;
 		// Source: https://www.geeksforgeeks.org/play-audio-file-using-java/
@@ -90,7 +89,6 @@ public class GameManager extends JPanel implements KeyListener {
 			
 			clip = AudioSystem.getClip();
 			clip.open(ais);
-			clip.loop(loops);
 			
 			return clip;
 		} catch(UnsupportedAudioFileException | IOException | LineUnavailableException e){

@@ -27,7 +27,7 @@ public class Spaceship implements GamePlaySceneObject {
 	
 	private boolean f;
 	
-	private static final int L = 100;
+	private static final int L = 70;
 	
 	private static final String FIRING_SOUND = "sound/FiringEffect.wav";
 	private Clip firingSoundClip;
@@ -59,7 +59,7 @@ public class Spaceship implements GamePlaySceneObject {
 			
 			// If we haven't even started playing sound
 			if(firingSoundClip == null)
-				firingSoundClip = gps.gm.playSound(FIRING_SOUND, 1);
+				firingSoundClip = gps.gm.getSoundClip(FIRING_SOUND);
 			// If we are near the end of the clip, rewind
 			if(firingSoundClip.getFramePosition() >= firingSoundClip.getFrameLength() - 1000)
 				firingSoundClip.setFramePosition(0);
@@ -99,7 +99,7 @@ public class Spaceship implements GamePlaySceneObject {
 		
 		// Draw axis of rotation
 		g2d.setColor(Color.BLACK);
-		g2d.fillRect(-4,-4,8,8);
+		g2d.fillOval(-4,-4,8,8);
 		
 		return ret;
 	}
