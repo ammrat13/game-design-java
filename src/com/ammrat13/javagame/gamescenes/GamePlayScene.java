@@ -2,6 +2,7 @@ package com.ammrat13.javagame.gamescenes;
 
 import com.ammrat13.javagame.GameManager;
 import com.ammrat13.javagame.GameScene;
+import com.ammrat13.javagame.objects.GamePlaySceneObject;
 import com.ammrat13.javagame.objects.Spaceship;
 import com.ammrat13.javagame.objects.TestObject;
 import com.ammrat13.javagame.util.Vec;
@@ -10,7 +11,6 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
 
@@ -41,7 +41,7 @@ public class GamePlayScene implements GameScene {
 		gpsos.add(player);
 		
 		// Sort the objects by z value, so the ones with less get rendered first
-		Collections.sort(gpsos, new Comparator<GamePlaySceneObject>() {
+		gpsos.sort(new Comparator<>() {
 			@Override
 			public int compare(GamePlaySceneObject o1, GamePlaySceneObject o2) {
 				return Integer.compare(o1.getZ(), o2.getZ());

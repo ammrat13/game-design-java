@@ -1,7 +1,6 @@
 package com.ammrat13.javagame.objects;
 
 import com.ammrat13.javagame.gamescenes.GamePlayScene;
-import com.ammrat13.javagame.gamescenes.GamePlaySceneObject;
 import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
