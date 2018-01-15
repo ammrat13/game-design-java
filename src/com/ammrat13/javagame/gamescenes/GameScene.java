@@ -1,4 +1,4 @@
-package com.ammrat13.javagame;
+package com.ammrat13.javagame.gamescenes;
 
 import java.awt.image.BufferedImage;
 import java.util.Set;

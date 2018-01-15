@@ -1,18 +1,17 @@
 package com.ammrat13.javagame;
 
 import com.ammrat13.javagame.gamescenes.GamePlayScene;
-
-import java.awt.*;
-import java.awt.event.*;
-
-import java.io.*;
-
-import java.util.*;
-import java.util.Timer;
+import com.ammrat13.javagame.gamescenes.GameScene;
 
 import javax.sound.sampled.*;
-
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
+import java.util.Timer;
 
 /**
  * This class will manage all aspects of the game, including scene cordination.

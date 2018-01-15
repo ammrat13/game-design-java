@@ -1,7 +1,6 @@
 package com.ammrat13.javagame.gamescenes;
 
 import com.ammrat13.javagame.GameManager;
-import com.ammrat13.javagame.GameScene;
 import com.ammrat13.javagame.objects.GamePlaySceneObject;
 import com.ammrat13.javagame.objects.Spaceship;
 import com.ammrat13.javagame.objects.TestObject;
