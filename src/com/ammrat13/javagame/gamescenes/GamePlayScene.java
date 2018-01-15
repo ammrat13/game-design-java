@@ -23,10 +23,10 @@ import java.util.Set;
 public class GamePlayScene implements GameScene {
 	
 	// Passed in
-	private GameManager gm;
+	public GameManager gm;
 	
 	// All the objects in the game scene
-	private ArrayList<GamePlaySceneObject> gpsos;
+	public ArrayList<GamePlaySceneObject> gpsos;
 	// The main player
 	private GamePlaySceneObject player;
 	

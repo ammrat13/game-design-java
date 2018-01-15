@@ -78,10 +78,10 @@ public class GameManager extends JPanel implements KeyListener {
 	 *
 	 * @param soundPath The path of the sound to play
 	 * @param loops The number of loops to play the sound (-1 for forever)
-	 * @return The length of the sound
+	 * @return The clip object for the sound
 	 */
 	
-	private int playSound(String soundPath, int loops){
+	public Clip playSound(String soundPath, int loops){
 		// The sound playing
 		Clip clip;
 		// Source: https://www.geeksforgeeks.org/play-audio-file-using-java/
@@ -92,12 +92,12 @@ public class GameManager extends JPanel implements KeyListener {
 			clip.open(ais);
 			clip.loop(loops);
 			
-			return (int) (1000 * ((double) ais.getFrameLength() / ais.getFormat().getFrameRate()));
+			return clip;
 		} catch(UnsupportedAudioFileException | IOException | LineUnavailableException e){
 			e.printStackTrace();
 		}
 		
-		return 0;
+		return null;
 	}
 	
 	private void update(){

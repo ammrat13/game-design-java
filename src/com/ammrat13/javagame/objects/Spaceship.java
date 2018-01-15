@@ -4,6 +4,7 @@ import com.ammrat13.javagame.gamescenes.GamePlayScene;
 import com.ammrat13.javagame.gamescenes.GamePlaySceneObject;
 import com.ammrat13.javagame.util.Vec;
 
+import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -27,6 +28,9 @@ public class Spaceship implements GamePlaySceneObject {
 	private boolean f;
 	
 	private static final int L = 100;
+	
+	private static final String FIRING_SOUND = "sound/FiringEffect.wav";
+	private Clip firingSoundClip;
 	
 	public Spaceship(Vec xi, Vec vi, double theta){
 		x = xi.copy();
@@ -52,8 +56,20 @@ public class Spaceship implements GamePlaySceneObject {
 		if(kCodes.contains(KeyEvent.VK_UP)){
 			f = true;
 			v = v.add(new Vec(Math.cos(theta), Math.sin(theta)).mul(a*dt));
+			
+			// If we haven't even started playing sound
+			if(firingSoundClip == null)
+				firingSoundClip = gps.gm.playSound(FIRING_SOUND, 1);
+			// If we are near the end of the clip, rewind
+			if(firingSoundClip.getFramePosition() >= firingSoundClip.getFrameLength() - 1000)
+				firingSoundClip.setFramePosition(0);
+			firingSoundClip.start();
 		} else {
 			f = false;
+			// Stop the sound if it exists
+			if(firingSoundClip != null) {
+				firingSoundClip.stop();
+			}
 		}
 		
 		x = x.add(v.mul(dt));
