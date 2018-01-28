@@ -17,25 +17,37 @@ import java.util.Set;
 
 public class Spaceship implements GamePlaySceneObject {
 	
+	// Passed in from above
+	GamePlayScene gps;
+	
+	// The position, velocity, and acceleration of the ship
 	private Vec x;
 	private Vec v;
-	private static final double a = 0.00003;
+	private static final double a = 0.0001;
 	
+	// Angle and angular velocity for turning
 	private double theta; // Above the right in radians
-	private static final double omega = 0.05;
+	private static final double omega = 0.1;
 	
+	// Firing?
 	private boolean f;
 	
+	// How big the spaceship is
 	private static final int L = 70;
 	
 	private static final String FIRING_SOUND = "sound/FiringEffect.wav";
 	private Clip firingSoundClip;
 	
-	public Spaceship(Vec xi, Vec vi, double theta){
+	public Spaceship(GamePlayScene gps, Vec xi, Vec vi, double theta){
+		this.gps = gps;
+		
 		x = xi.copy();
 		v = vi.copy();
 		this.theta = theta;
 		f = false;
+		
+		// Sound
+		firingSoundClip = gps.gm.getSoundClip(FIRING_SOUND);
 	}
 	
 	@Override
@@ -44,31 +56,25 @@ public class Spaceship implements GamePlaySceneObject {
 	}
 	
 	@Override
-	public void update(int dt, Set<Integer> kCodes, GamePlayScene gps){
+	public void update(int dt, Set<Integer> kCodes){
 		// Rotation
 		if(kCodes.contains(KeyEvent.VK_LEFT))
 			theta += omega;
 		if(kCodes.contains(KeyEvent.VK_RIGHT))
 			theta -= omega;
 		
-		// Acceleration
+		// Acceleration and firing sound
 		if(kCodes.contains(KeyEvent.VK_UP)){
 			f = true;
 			v = v.add(new Vec(Math.cos(theta), Math.sin(theta)).mul(a*dt));
 			
-			// If we haven't even started playing sound
-			if(firingSoundClip == null)
-				firingSoundClip = gps.gm.getSoundClip(FIRING_SOUND);
 			// If we are near the end of the clip, rewind
 			if(firingSoundClip.getFramePosition() >= firingSoundClip.getFrameLength() - 1000)
 				firingSoundClip.setFramePosition(0);
 			firingSoundClip.start();
 		} else {
 			f = false;
-			// Stop the sound if it exists
-			if(firingSoundClip != null) {
-				firingSoundClip.stop();
-			}
+			firingSoundClip.stop();
 		}
 		
 		x = x.add(v.mul(dt));

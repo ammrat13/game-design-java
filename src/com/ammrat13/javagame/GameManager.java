@@ -10,8 +10,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * This class will manage all aspects of the game, including scene cordination.
@@ -22,30 +24,32 @@ import java.util.Timer;
 
 public class GameManager extends JPanel implements KeyListener {
 	
+	// Passed in from the window
 	public final int WIDTH;
 	public final int HEIGHT;
 	
-	private long time;
-	
+	// The game manger manages the background sound as it persists between scenes
 	private static final String BG_SOUND = "sound/MainMusic.wav";
 	
-	// Map of all the scenes we have
-	private Map<String, GameScene> gss;
-	private GameScene active;
-	
+	// To pass the change in time to the scene
+	private long time;
 	// To pass to the active scene
-	private Set<Integer> keysDown;
+	private final Set<Integer> keysDown;
+	
+	// Set of all the scenes we have and which one is active
+	private final Set<GameScene> gss;
+	private GameScene active;
 	
 	public GameManager(int w, int h){
 		WIDTH = w;
 		HEIGHT = h;
-		keysDown = new HashSet<>();
 		
 		time = System.currentTimeMillis();
+		keysDown = new HashSet<>();
 		
-		gss = new HashMap<>();
-		gss.put("GamePlay", new GamePlayScene(this));
-		setActive("GamePlay");
+		gss = new HashSet<>();
+		gss.add(new GamePlayScene(this));
+		setActive("GamePlayScene");
 		
 		// Update every frame
 		Timer t = new Timer();
@@ -56,7 +60,8 @@ public class GameManager extends JPanel implements KeyListener {
 			}
 		}, 0, 30);
 		
-		getSoundClip(BG_SOUND).loop(-1); // Forever
+		// Loop the background sound forever
+		getSoundClip(BG_SOUND).loop(-1);
 	}
 	
 	/**
@@ -66,9 +71,17 @@ public class GameManager extends JPanel implements KeyListener {
 	 */
 	
 	public void setActive(String ags){
+		// Stop the current active scene
 		if(active != null)
 			active.stop();
-		active = gss.get(ags);
+		// Find the scene we want to make active
+		for(GameScene gs : gss){
+			if(gs.getClass().getSimpleName().equals(ags)){
+				active = gs;
+				break;
+			}
+		}
+		// Start the new scene
 		active.start();
 	}
 	
@@ -76,26 +89,25 @@ public class GameManager extends JPanel implements KeyListener {
 	 * Gets the clip for a sound.
 	 *
 	 * @param soundPath The path of the sound to get the clip for
-	 * @return The clip object for the sound
+	 * @return The clip object for the sound, or null if failure
 	 */
 	
 	public Clip getSoundClip(String soundPath){
-		// The sound playing
-		Clip clip;
 		// Source: https://www.geeksforgeeks.org/play-audio-file-using-java/
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(new File(soundPath).getAbsoluteFile());
-			
-			clip = AudioSystem.getClip();
+			Clip clip = AudioSystem.getClip();
 			clip.open(ais);
-			
 			return clip;
 		} catch(UnsupportedAudioFileException | IOException | LineUnavailableException e){
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
+	
+	/**
+	 * Called every frame to update the game.
+	 */
 	
 	private void update(){
 		// Update the scene
@@ -110,6 +122,7 @@ public class GameManager extends JPanel implements KeyListener {
 	
 	@Override
 	protected void paintComponent(Graphics g){
+		// Just draw the active scene
 		g.drawImage(active.render(), 0, 0, null);
 	}
 	

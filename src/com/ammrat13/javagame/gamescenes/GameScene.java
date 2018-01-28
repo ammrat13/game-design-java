@@ -10,8 +10,27 @@ import java.util.Set;
  */
 
 public interface GameScene {
-	void start();								// For when starting the scene
-	void stop();								// When the scene goes out of focus
-	void update(int dt, Set<Integer> kCodes);	// To be called every frame
-	BufferedImage render();						// To be called on repaint
+	/**
+	 * Called when the scene is reloaded after being switch away. Differs from
+	 * the constructor, which is called only at the start of the game.
+	 */
+	void start();
+	
+	/**
+	 * Called when the scene goes out of focus.
+	 */
+	void stop();
+	
+	/**
+	 * To be called every frame.
+	 *
+	 * @param dt The time that has passed since the last frame (ms)
+	 * @param kCodes The set of all keys that are pressed down
+	 */
+	void update(int dt, Set<Integer> kCodes);
+	
+	/**
+	 * @return The image of this scene to be drawn.
+	 */
+	BufferedImage render();
 }

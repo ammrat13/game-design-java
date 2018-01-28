@@ -1,6 +1,5 @@
 package com.ammrat13.javagame.objects;
 
-import com.ammrat13.javagame.gamescenes.GamePlayScene;
 import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
@@ -15,6 +14,7 @@ import java.util.Set;
 
 public class TestObject implements GamePlaySceneObject {
 	
+	// Fixed position
 	private Vec pos;
 	
 	public TestObject(double x, double y){
@@ -22,7 +22,7 @@ public class TestObject implements GamePlaySceneObject {
 	}
 	
 	@Override
-	public void update(int dt, Set<Integer> kCodes, GamePlayScene gps){}
+	public void update(int dt, Set<Integer> kCodes){}
 	
 	@Override
 	public Vec getPos(){return pos;}

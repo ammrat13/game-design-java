@@ -21,22 +21,22 @@ import java.util.Set;
 
 public class GamePlayScene implements GameScene {
 	
-	// Passed in
+	// Passed in from above
 	public GameManager gm;
 	
 	// All the objects in the game scene
-	public ArrayList<GamePlaySceneObject> gpsos;
+	private final ArrayList<GamePlaySceneObject> gpsos;
 	// The main player
 	private GamePlaySceneObject player;
 	
 	public GamePlayScene(GameManager gm){
 		this.gm = gm;
 		
+		// Scene setup
 		gpsos = new ArrayList<>();
 		gpsos.add(new TestObject(0,0));
-		
 		// Both player and the reference in gpsos point to the same object
-		player = new Spaceship(new Vec(0,0), new Vec(0,0), Math.toRadians(0));
+		player = new Spaceship(this, new Vec(0,0), new Vec(0,0), Math.toRadians(0));
 		gpsos.add(player);
 		
 		// Sort the objects by z value, so the ones with less get rendered first
@@ -50,6 +50,21 @@ public class GamePlayScene implements GameScene {
 		start();
 	}
 	
+	/**
+	 * Returns all the objects of the class specified.
+	 *
+	 * @param cName The name of the class
+	 */
+	public ArrayList<GamePlaySceneObject> getObjsOfClass(String cName){
+		ArrayList<GamePlaySceneObject> ret = new ArrayList<>();
+		for(GamePlaySceneObject gpso : gpsos){
+			if(gpso.getClass().getSimpleName().equals(cName))
+				ret.add(gpso);
+		}
+		return ret;
+	}
+	
+	
 	@Override
 	public void start(){}
 	
@@ -60,9 +75,7 @@ public class GamePlayScene implements GameScene {
 	public void update(int dt, Set<Integer> kCodes){
 		// Update each object
 		for(GamePlaySceneObject gpso : gpsos)
-			gpso.update(dt, kCodes, this);
-		// Don't forget the player
-		player.update(dt, kCodes, this);
+			gpso.update(dt, kCodes);
 	}
 	
 	@Override
