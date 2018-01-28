@@ -11,6 +11,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -21,22 +22,26 @@ import java.util.Set;
 
 public class GamePlayScene implements GameScene {
 	
-	// Passed in from above
-	public GameManager gm;
+	/** The game manager passed in from above. */
+	private GameManager gm;
 	
-	// All the objects in the game scene
+	/** A list of the objects in the game scene. */
 	private final ArrayList<GamePlaySceneObject> gpsos;
-	// The main player
+	/** The pointer to the main player. */
 	private GamePlaySceneObject player;
 	
+	/**
+	 * Constructs the scene. Takes the game manager as input.
+	 * @param gm The game manager passed in from above
+	 */
 	public GamePlayScene(GameManager gm){
 		this.gm = gm;
 		
 		// Scene setup
 		gpsos = new ArrayList<>();
-		gpsos.add(new TestObject(0,0));
+		gpsos.add(new TestObject(Vec.ZERO));
 		// Both player and the reference in gpsos point to the same object
-		player = new Spaceship(this, new Vec(0,0), new Vec(0,0), Math.toRadians(0));
+		player = new Spaceship(this, Vec.ZERO, Vec.ZERO, 0.0);
 		gpsos.add(player);
 		
 		// Sort the objects by z value, so the ones with less get rendered first
@@ -52,11 +57,11 @@ public class GamePlayScene implements GameScene {
 	
 	/**
 	 * Returns all the objects of the class specified.
-	 *
 	 * @param cName The name of the class
+	 * @return A set of all such objects
 	 */
-	public ArrayList<GamePlaySceneObject> getObjsOfClass(String cName){
-		ArrayList<GamePlaySceneObject> ret = new ArrayList<>();
+	public Set<GamePlaySceneObject> getObjsOfClass(String cName){
+		Set<GamePlaySceneObject> ret = new HashSet<>();
 		for(GamePlaySceneObject gpso : gpsos){
 			if(gpso.getClass().getSimpleName().equals(cName))
 				ret.add(gpso);
@@ -64,13 +69,15 @@ public class GamePlayScene implements GameScene {
 		return ret;
 	}
 	
-	
+	/** {@inheritDoc} */
 	@Override
 	public void start(){}
 	
+	/** {@inheritDoc} */
 	@Override
 	public void stop(){}
 	
+	/** {@inheritDoc} */
 	@Override
 	public void update(int dt, Set<Integer> kCodes){
 		// Update each object
@@ -78,6 +85,7 @@ public class GamePlayScene implements GameScene {
 			gpso.update(dt, kCodes);
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public BufferedImage render(){
 		// Render all the objects

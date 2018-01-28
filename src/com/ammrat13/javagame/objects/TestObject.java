@@ -14,19 +14,26 @@ import java.util.Set;
 
 public class TestObject implements GamePlaySceneObject {
 	
-	// Fixed position
-	private Vec pos;
+	/** The fixed position of the object. */
+	private Vec x;
 	
-	public TestObject(double x, double y){
-		pos = new Vec(x,y);
+	/**
+	 * Constructs the object.
+	 * @param x The position of the object
+	 */
+	public TestObject(Vec x){
+		this.x = x.copy();
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public void update(int dt, Set<Integer> kCodes){}
 	
+	/** {@inheritDoc} */
 	@Override
-	public Vec getPos(){return pos;}
+	public Vec getPos(){return x;}
 	
+	/** {@inheritDoc} */
 	@Override
 	public BufferedImage render(){
 		BufferedImage ret = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
@@ -38,9 +45,11 @@ public class TestObject implements GamePlaySceneObject {
 		return ret;
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public Vec renderOffset(){return new Vec(-5,-5);}
 	
+	/** {@inheritDoc} */
 	@Override
 	public int getZ(){
 		return -1;

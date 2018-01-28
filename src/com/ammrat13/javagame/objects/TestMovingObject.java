@@ -15,16 +15,24 @@ import java.util.Set;
 
 public class TestMovingObject implements GamePlaySceneObject {
 	
-	// Position, velocity, and acceleration
+	/** The position of the object. */
 	private Vec x;
+	/** The velocity of the object. */
 	private Vec v;
+	/** The acceleration of the object. */
 	private static final double a = 0.0001;
 	
+	/**
+	 * Constructs the object.
+	 * @param xi The initial position of the object
+	 * @param vi The initial velocity of the object
+	 */
 	public TestMovingObject(Vec xi, Vec vi){
 		x = xi.copy();
 		v = vi.copy();
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public void update(int dt, Set<Integer> kCodes){
 		System.out.println(dt);
@@ -39,11 +47,13 @@ public class TestMovingObject implements GamePlaySceneObject {
 		x = x.add(v.mul(dt));
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public Vec getPos(){
 		return x;
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public BufferedImage render(){
 		BufferedImage ret = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
@@ -55,11 +65,13 @@ public class TestMovingObject implements GamePlaySceneObject {
 		return ret;
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public Vec renderOffset(){
 		return new Vec(-5,-5);
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public int getZ(){
 		return 0;

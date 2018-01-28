@@ -23,13 +23,13 @@ public interface GameScene {
 	
 	/**
 	 * To be called every frame.
-	 *
 	 * @param dt The time that has passed since the last frame (ms)
 	 * @param kCodes The set of all keys that are pressed down
 	 */
 	void update(int dt, Set<Integer> kCodes);
 	
 	/**
+	 * Renders the scene.
 	 * @return The image of this scene to be drawn.
 	 */
 	BufferedImage render();

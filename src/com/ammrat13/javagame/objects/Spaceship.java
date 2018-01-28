@@ -1,6 +1,7 @@
 package com.ammrat13.javagame.objects;
 
 import com.ammrat13.javagame.gamescenes.GamePlayScene;
+import com.ammrat13.javagame.util.Sound;
 import com.ammrat13.javagame.util.Vec;
 
 import javax.sound.sampled.Clip;
@@ -17,27 +18,39 @@ import java.util.Set;
 
 public class Spaceship implements GamePlaySceneObject {
 	
-	// Passed in from above
-	GamePlayScene gps;
+	/** The gameplay scene passed in from above. */
+	private GamePlayScene gps;
 	
-	// The position, velocity, and acceleration of the ship
+	/** The position of the ship. */
 	private Vec x;
+	/** The velocity of the ship. */
 	private Vec v;
+	/** The acceleration of the ship. */
 	private static final double a = 0.0001;
 	
-	// Angle and angular velocity for turning
-	private double theta; // Above the right in radians
+	/** The angle of the ship above the right in radians. */
+	private double theta;
+	/** The maximum angular velocity of the ship. */
 	private static final double omega = 0.1;
 	
-	// Firing?
+	/** Whether the ship is firing its engines. */
 	private boolean f;
 	
-	// How big the spaceship is
+	/** The parameter determining the size of the ship. */
 	private static final int L = 70;
 	
+	/** The name of the file for the sound for when the engines are firing. */
 	private static final String FIRING_SOUND = "sound/FiringEffect.wav";
+	/** The sound clip for when the engines are firing. */
 	private Clip firingSoundClip;
 	
+	/**
+	 * Constructs the spaceship.
+	 * @param gps The game play scene passed in from above
+	 * @param xi The initial position of the ship
+	 * @param vi The initial velocity of the ship
+	 * @param theta The initial angle of the ship
+	 */
 	public Spaceship(GamePlayScene gps, Vec xi, Vec vi, double theta){
 		this.gps = gps;
 		
@@ -47,14 +60,16 @@ public class Spaceship implements GamePlaySceneObject {
 		f = false;
 		
 		// Sound
-		firingSoundClip = gps.gm.getSoundClip(FIRING_SOUND);
+		firingSoundClip = Sound.getSoundClip(FIRING_SOUND);
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public Vec getPos(){
 		return x;
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public void update(int dt, Set<Integer> kCodes){
 		// Rotation
@@ -80,6 +95,7 @@ public class Spaceship implements GamePlaySceneObject {
 		x = x.add(v.mul(dt));
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public BufferedImage render(){
 		BufferedImage ret = new BufferedImage(2*L, 2*L, BufferedImage.TYPE_INT_ARGB);
@@ -109,11 +125,13 @@ public class Spaceship implements GamePlaySceneObject {
 		return ret;
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public Vec renderOffset(){
 		return new Vec(-L, -L);
 	}
 	
+	/** {@inheritDoc} */
 	@Override
 	public int getZ(){
 		return 0;

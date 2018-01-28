@@ -10,10 +10,16 @@ import javax.swing.*;
 
 public class Main {
 	
-	// The dimensions of the window
+	/** The width of the display window. */
 	private static final int WIDTH = 1366;
+	
+	/** The height of the display window. */
 	private static final int HEIGHT = 786;
 	
+	/**
+	 * The main method for the entire project.
+	 * @param args Command line arguments
+	 */
 	public static void main(String[] args){
 		JFrame mainFrame = new JFrame("Get Home");
 		
