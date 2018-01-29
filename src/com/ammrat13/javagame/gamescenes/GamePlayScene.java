@@ -23,7 +23,7 @@ import java.util.Set;
 public class GamePlayScene implements GameScene {
 	
 	/** The game manager passed in from above. */
-	private GameManager gm;
+	public GameManager gm;
 	
 	/** A list of the objects in the game scene. */
 	private final ArrayList<GamePlaySceneObject> gpsos;

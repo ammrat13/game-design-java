@@ -2,6 +2,7 @@ package com.ammrat13.javagame;
 
 import com.ammrat13.javagame.gamescenes.GamePlayScene;
 import com.ammrat13.javagame.gamescenes.GameScene;
+import com.ammrat13.javagame.gamescenes.TitleScene;
 import com.ammrat13.javagame.util.Sound;
 
 import javax.swing.*;
@@ -55,8 +56,9 @@ public class GameManager extends JPanel implements KeyListener {
 		keysDown = new HashSet<>();
 		
 		gss = new HashSet<>();
+		gss.add(new TitleScene(this));
 		gss.add(new GamePlayScene(this));
-		setActive("GamePlayScene");
+		setActive("TitleScene");
 		
 		// Update every frame
 		Timer t = new Timer();
