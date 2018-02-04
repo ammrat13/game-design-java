@@ -2,6 +2,7 @@ package com.ammrat13.javagame;
 
 import com.ammrat13.javagame.gamescenes.GamePlayScene;
 import com.ammrat13.javagame.gamescenes.GameScene;
+import com.ammrat13.javagame.gamescenes.InstructionScene;
 import com.ammrat13.javagame.gamescenes.TitleScene;
 import com.ammrat13.javagame.util.Sound;
 
@@ -57,6 +58,7 @@ public class GameManager extends JPanel implements KeyListener {
 		
 		gss = new HashSet<>();
 		gss.add(new TitleScene(this));
+		gss.add(new InstructionScene(this));
 		gss.add(new GamePlayScene(this));
 		setActive("TitleScene");
 		

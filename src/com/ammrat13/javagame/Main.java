@@ -11,10 +11,10 @@ import javax.swing.*;
 public class Main {
 	
 	/** The width of the display window. */
-	private static final int WIDTH = 1366;
+	private static final int WIDTH = 1162;
 	
 	/** The height of the display window. */
-	private static final int HEIGHT = 786;
+	private static final int HEIGHT = 648;
 	
 	/**
 	 * The main method for the entire project.
@@ -30,6 +30,7 @@ public class Main {
 		mainFrame.add(gm);
 		
 		// Start
+		mainFrame.setResizable(false);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setSize(WIDTH, HEIGHT);
 		mainFrame.setVisible(true);

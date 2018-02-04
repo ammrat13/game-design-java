@@ -1,6 +1,7 @@
 package com.ammrat13.javagame.gamescenes;
 
 import com.ammrat13.javagame.GameManager;
+import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -32,7 +33,7 @@ public class TitleScene implements GameScene {
 	/** The height of a button. */
 	private final int BUTH = 70;
 	/** The font of the button text. */
-	private final Font BFON = new Font(null, Font.BOLD, 50);
+	private final Font BFON = new Font(null, Font.BOLD, 40);
 	
 	/** The width of the arrow. */
 	private final int AW = 30;
@@ -40,9 +41,11 @@ public class TitleScene implements GameScene {
 	private final int AH = 30;
 	
 	/** The list of all the buttons we have. */
-	private String[] buts = new String[]{"Start Game", "Other thing", "Other thing"};
+	private String[] buts = new String[]{"Start Game", "How to Play"};
 	/** The list of the scenes the buttons correspond to. */
-	private String[] butScen = new String[]{"GamePlayScene", null, null};
+	private String[] butScen = new String[]{"GamePlayScene", "InstructionScene"};
+	/** The list of offsets for the text in the buttons */
+	private Vec[] butOff = new Vec[]{new Vec(-110,15), new Vec(-120,15)};
 	/** Stores the index of the active button. */
 	private int actI = 0;
 	
@@ -114,7 +117,7 @@ public class TitleScene implements GameScene {
 		for(int b=0; b<buts.length; b++) {
 			g2d.drawRect(gm.WIDTH / 3, butTopY(b), gm.WIDTH / 3, BUTH);
 			g2d.setFont(BFON);
-			g2d.drawString(buts[b], CEN - 140, butTopY(b) + BUTH / 2 + 20);
+			g2d.drawString(buts[b], CEN + (int) butOff[b].x, butTopY(b) + BUTH / 2 + (int) butOff[b].y);
 		}
 		
 		// Active button
