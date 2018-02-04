@@ -15,12 +15,12 @@ import java.util.Set;
  * @author Ammar Ratnani
  */
 
-public class LoseScene implements GameScene {
+public class WinScene implements GameScene {
 	
 	/** The game manager passed in from above. */
 	private GameManager gm;
 	
-	/** The margins on the lose scene. */
+	/** The margins on the win scene. */
 	private final int MAR = 30;
 	/** The center of the screen. */
 	private final int CEN;
@@ -56,7 +56,7 @@ public class LoseScene implements GameScene {
 	 * Constructs the scene. Takes the game manager as input.
 	 * @param gm The game manager passed in from above
 	 */
-	public LoseScene(GameManager gm){
+	public WinScene(GameManager gm){
 		this.gm = gm;
 		CEN = gm.WIDTH/2;
 		start();
@@ -114,7 +114,7 @@ public class LoseScene implements GameScene {
 		g2d.setColor(Color.WHITE);
 		g2d.drawRect(MAR, MAR,gm.WIDTH-2*MAR, TBH);
 		g2d.setFont(TFON);
-		g2d.drawString("Game Over", CEN - 200, MAR + TBH/2 + 20);
+		g2d.drawString("You Win", CEN - 140, MAR + TBH/2 + 20);
 		
 		// Buttons
 		for(int b=0; b<buts.length; b++) {
