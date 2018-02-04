@@ -6,7 +6,6 @@ import com.ammrat13.javagame.GameManager;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.util.Set;
 
 /**
  * This class is displays the instructions for the game.
@@ -19,7 +18,7 @@ public class InstructionScene implements GameScene {
 	/** The game manager passed in from above. */
 	private GameManager gm;
 	
-	/** The margins on the title scene. */
+	/** The margins on the instructions scene. */
 	private final int MAR = 30;
 	/** The center of the screen. */
 	private final int CEN;
@@ -53,8 +52,8 @@ public class InstructionScene implements GameScene {
 	
 	/** {@inheritDoc} */
 	@Override
-	public void update(int dt, Set<Integer> kCodes){
-		if(kCodes.contains(KeyEvent.VK_ESCAPE))
+	public void update(int dt){
+		if(gm.keysDown.contains(KeyEvent.VK_ESCAPE))
 			gm.setActive("TitleScene");
 	}
 	

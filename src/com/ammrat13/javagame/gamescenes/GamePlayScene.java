@@ -79,10 +79,10 @@ public class GamePlayScene implements GameScene {
 	
 	/** {@inheritDoc} */
 	@Override
-	public void update(int dt, Set<Integer> kCodes){
+	public void update(int dt){
 		// Update each object
 		for(GamePlaySceneObject gpso : gpsos)
-			gpso.update(dt, kCodes);
+			gpso.update(dt, gm.keysDown);
 	}
 	
 	/** {@inheritDoc} */

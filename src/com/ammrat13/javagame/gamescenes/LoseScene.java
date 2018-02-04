@@ -10,17 +10,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This class is displays the title for the game.
+ * This class is displays the screen for a loss.
  *
  * @author Ammar Ratnani
  */
 
-public class TitleScene implements GameScene {
+public class LoseScene implements GameScene {
 	
 	/** The game manager passed in from above. */
 	private GameManager gm;
 	
-	/** The margins on the title scene. */
+	/** The margins on the lose scene. */
 	private final int MAR = 30;
 	/** The center of the screen. */
 	private final int CEN;
@@ -41,11 +41,11 @@ public class TitleScene implements GameScene {
 	private final int AH = 30;
 	
 	/** The list of all the buttons we have. */
-	private String[] buts = new String[]{"Start Game", "How to Play"};
+	private String[] buts = new String[]{"Restart", "Quit"};
 	/** The list of the scenes the buttons correspond to. */
-	private String[] butScen = new String[]{"GamePlayScene", "InstructionScene"};
+	private String[] butScen = new String[]{"GamePlayScene", "TitleScene"};
 	/** The list of offsets for the text in the buttons */
-	private Vec[] butOff = new Vec[]{new Vec(-110,15), new Vec(-120,15)};
+	private Vec[] butOff = new Vec[]{new Vec(-70,15), new Vec(-50,15)};
 	/** Stores the index of the active button. */
 	private int actI = 0;
 	
@@ -56,7 +56,7 @@ public class TitleScene implements GameScene {
 	 * Constructs the scene. Takes the game manager as input.
 	 * @param gm The game manager passed in from above
 	 */
-	public TitleScene(GameManager gm){
+	public LoseScene(GameManager gm){
 		this.gm = gm;
 		CEN = gm.WIDTH/2;
 		start();
@@ -125,9 +125,9 @@ public class TitleScene implements GameScene {
 		
 		// Active button
 		g2d.fillPolygon(
-			new int[]{gm.WIDTH/3 - MAR, gm.WIDTH/3 - MAR - AW, gm.WIDTH/3 - MAR - AW},
-			new int[]{butTopY(actI) + BUTH/2, butTopY(actI) + BUTH/2 - AH/2, butTopY(actI) + BUTH/2 + AH/2},
-			3
+				new int[]{gm.WIDTH/3 - MAR, gm.WIDTH/3 - MAR - AW, gm.WIDTH/3 - MAR - AW},
+				new int[]{butTopY(actI) + BUTH/2, butTopY(actI) + BUTH/2 - AH/2, butTopY(actI) + BUTH/2 + AH/2},
+				3
 		);
 		
 		return ret;

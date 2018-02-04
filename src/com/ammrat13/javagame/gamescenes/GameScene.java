@@ -1,7 +1,6 @@
 package com.ammrat13.javagame.gamescenes;
 
 import java.awt.image.BufferedImage;
-import java.util.Set;
 
 /**
  * This interface provides the methods a game scene must implement
@@ -24,9 +23,8 @@ public interface GameScene {
 	/**
 	 * To be called every frame.
 	 * @param dt The time that has passed since the last frame (ms)
-	 * @param kCodes The set of all keys that are pressed down
 	 */
-	void update(int dt, Set<Integer> kCodes);
+	void update(int dt);
 	
 	/**
 	 * Renders the scene.

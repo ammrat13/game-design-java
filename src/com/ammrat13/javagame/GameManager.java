@@ -1,9 +1,6 @@
 package com.ammrat13.javagame;
 
-import com.ammrat13.javagame.gamescenes.GamePlayScene;
-import com.ammrat13.javagame.gamescenes.GameScene;
-import com.ammrat13.javagame.gamescenes.InstructionScene;
-import com.ammrat13.javagame.gamescenes.TitleScene;
+import com.ammrat13.javagame.gamescenes.*;
 import com.ammrat13.javagame.util.Sound;
 
 import javax.swing.*;
@@ -35,7 +32,7 @@ public class GameManager extends JPanel implements KeyListener {
 	/** The current system time. Used to pass change in time to scenes. */
 	private long time;
 	/** The set of keys that are pressed down. Passed to scenes. */
-	private final Set<Integer> keysDown;
+	public final Set<Integer> keysDown;
 	
 	/** The set of all game scenes. */
 	private final Set<GameScene> gss;
@@ -60,7 +57,8 @@ public class GameManager extends JPanel implements KeyListener {
 		gss.add(new TitleScene(this));
 		gss.add(new InstructionScene(this));
 		gss.add(new GamePlayScene(this));
-		setActive("TitleScene");
+		gss.add(new LoseScene(this));
+		setActive("LoseScene");
 		
 		// Update every frame
 		Timer t = new Timer();
@@ -104,10 +102,7 @@ public class GameManager extends JPanel implements KeyListener {
 	
 	private void update(){
 		// Update the scene
-		active.update(
-			Math.toIntExact((System.currentTimeMillis() - time) % Integer.MAX_VALUE),
-			keysDown
-		);
+		active.update(Math.toIntExact((System.currentTimeMillis() - time) % Integer.MAX_VALUE));
 		time = System.currentTimeMillis();
 		
 		this.repaint();
