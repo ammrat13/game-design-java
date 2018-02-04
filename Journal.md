@@ -1,5 +1,7 @@
 # Journal
 
+**3 February 2018**: Today I created the instructions screen, lose screen, and win screen and modified the logic dealing with keypresses
+
 **2 February 2018**: Today I sudied GG Interactive because I thought the quiz was today
 
 **1 February 2018**: Today I worked on the Finance Test and studied GG Interactive
