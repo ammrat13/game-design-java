@@ -47,6 +47,14 @@ public class Spaceship implements GamePlaySceneObject {
 	/**
 	 * Constructs the spaceship.
 	 * @param gps The game play scene passed in from above
+	 */
+	public Spaceship(GamePlayScene gps){
+		this(gps, Vec.ZERO, Vec.ZERO, 0.0);
+	}
+	
+	/**
+	 * Constructs the spaceship.
+	 * @param gps The game play scene passed in from above
 	 * @param xi The initial position of the ship
 	 * @param vi The initial velocity of the ship
 	 * @param t The initial angle of the ship

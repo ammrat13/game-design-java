@@ -1,5 +1,6 @@
 package com.ammrat13.javagame.objects;
 
+import com.ammrat13.javagame.gamescenes.GamePlayScene;
 import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
@@ -24,10 +25,17 @@ public class TestMovingObject implements GamePlaySceneObject {
 	
 	/**
 	 * Constructs the object.
+	 */
+	public TestMovingObject(GamePlayScene gps){
+		this(gps, Vec.ZERO, Vec.ZERO);
+	}
+	
+	/**
+	 * Constructs the object.
 	 * @param xi The initial position of the object
 	 * @param vi The initial velocity of the object
 	 */
-	public TestMovingObject(Vec xi, Vec vi){
+	public TestMovingObject(GamePlayScene gps, Vec xi, Vec vi){
 		x = xi.copy();
 		v = vi.copy();
 	}
