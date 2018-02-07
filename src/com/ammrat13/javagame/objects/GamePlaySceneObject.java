@@ -13,6 +13,7 @@ import java.util.Set;
  */
 
 public interface GamePlaySceneObject {
+	
 	/**
 	 * This method will be used to update the object every frame.
 	 * @param dt The time that has passed since the last frame (ms)

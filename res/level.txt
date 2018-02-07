@@ -1,0 +1,2 @@
+Spaceship 0 0 0 0
+TestObject 0 0 -1

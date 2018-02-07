@@ -56,6 +56,18 @@ public class GamePlayScene implements GameScene {
 	}
 	
 	/**
+	 * Given a String, returns the object that String describes. The format of
+	 * the String will be the name of the class followed by the parameters
+	 * separated by spaces.
+	 * @param s The string describing the object
+	 * @return The object
+	 */
+	private GamePlaySceneObject parseObj(String s){
+		
+		return null;
+	}
+	
+	/**
 	 * Returns all the objects of the class specified.
 	 * @param cName The name of the class
 	 * @return A set of all such objects
