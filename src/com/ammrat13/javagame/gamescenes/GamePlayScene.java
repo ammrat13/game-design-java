@@ -2,8 +2,7 @@ package com.ammrat13.javagame.gamescenes;
 
 import com.ammrat13.javagame.GameManager;
 import com.ammrat13.javagame.objects.GamePlaySceneObject;
-import com.ammrat13.javagame.objects.Spaceship;
-import com.ammrat13.javagame.objects.TestObject;
+import com.ammrat13.javagame.util.Parse;
 import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
@@ -30,6 +29,9 @@ public class GamePlayScene implements GameScene {
 	/** The pointer to the main player. */
 	private GamePlaySceneObject player;
 	
+	/** The file for the level itself. */
+	private final String LVLFILE = "res/level.lvl";
+	
 	/**
 	 * Constructs the scene. Takes the game manager as input.
 	 * @param gm The game manager passed in from above
@@ -38,12 +40,8 @@ public class GamePlayScene implements GameScene {
 		this.gm = gm;
 		
 		// Scene setup
-		gpsos = new ArrayList<>();
-		gpsos.add(new TestObject(this, Vec.ZERO));
-		// Both player and the reference in gpsos point to the same object
-		player = new Spaceship(this, Vec.ZERO, Vec.ZERO, 0.0);
-		gpsos.add(player);
-		
+		gpsos = Parse.parseLvl(this, LVLFILE);
+		player = gpsos.get(0);
 		// Sort the objects by z value, so the ones with less get rendered first
 		gpsos.sort(new Comparator<>() {
 			@Override
