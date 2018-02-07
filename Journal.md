@@ -1,5 +1,7 @@
 # Journal
 
+**7 February 2018**: Today I implemented level parsing and the exit portal
+
 **6 February 2018**: Today I studied for DECA
 
 **5 February 2018**: Today I studied for DECA
