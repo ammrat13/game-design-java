@@ -39,7 +39,7 @@ public class GamePlayScene implements GameScene {
 		
 		// Scene setup
 		gpsos = new ArrayList<>();
-		gpsos.add(new TestObject(Vec.ZERO));
+		gpsos.add(new TestObject(this, Vec.ZERO));
 		// Both player and the reference in gpsos point to the same object
 		player = new Spaceship(this, Vec.ZERO, Vec.ZERO, 0.0);
 		gpsos.add(player);
@@ -53,18 +53,6 @@ public class GamePlayScene implements GameScene {
 		});
 		
 		start();
-	}
-	
-	/**
-	 * Given a String, returns the object that String describes. The format of
-	 * the String will be the name of the class followed by the parameters
-	 * separated by spaces.
-	 * @param s The string describing the object
-	 * @return The object
-	 */
-	private GamePlaySceneObject parseObj(String s){
-		
-		return null;
 	}
 	
 	/**

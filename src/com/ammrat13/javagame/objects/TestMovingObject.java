@@ -25,13 +25,7 @@ public class TestMovingObject implements GamePlaySceneObject {
 	
 	/**
 	 * Constructs the object.
-	 */
-	public TestMovingObject(GamePlayScene gps){
-		this(gps, Vec.ZERO, Vec.ZERO);
-	}
-	
-	/**
-	 * Constructs the object.
+	 * @param gps The game play scene passed in from above
 	 * @param xi The initial position of the object
 	 * @param vi The initial velocity of the object
 	 */

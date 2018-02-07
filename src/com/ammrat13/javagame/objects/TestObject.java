@@ -1,5 +1,6 @@
 package com.ammrat13.javagame.objects;
 
+import com.ammrat13.javagame.gamescenes.GamePlayScene;
 import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
@@ -19,9 +20,10 @@ public class TestObject implements GamePlaySceneObject {
 	
 	/**
 	 * Constructs the object.
+	 * @param gps The game play scene passed in from above
 	 * @param x The position of the object
 	 */
-	public TestObject(Vec x){
+	public TestObject(GamePlayScene gps, Vec x){
 		this.x = x.copy();
 	}
 	
