@@ -28,6 +28,12 @@ public interface GamePlaySceneObject {
 	Vec getPos();
 	
 	/**
+	 * Gets the radius of the object for purposes of collision.
+	 * @return The readius of the object
+	 */
+	double getRadius();
+	
+	/**
 	 * Renders the object.
 	 * @return The image of this object to be rendered into the scene
 	 */

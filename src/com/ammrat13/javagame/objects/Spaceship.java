@@ -22,7 +22,7 @@ public class Spaceship implements GamePlaySceneObject {
 	private GamePlayScene gps;
 	
 	/** The position of the ship. */
-	private Vec x;
+	public Vec x;
 	/** The velocity of the ship. */
 	private Vec v;
 	/** The acceleration of the ship. */
@@ -67,6 +67,12 @@ public class Spaceship implements GamePlaySceneObject {
 	@Override
 	public Vec getPos(){
 		return x;
+	}
+	
+	/** {@inheritDoc} */
+	@Override
+	public double getRadius(){
+		return L/2.0;
 	}
 	
 	/** {@inheritDoc} */

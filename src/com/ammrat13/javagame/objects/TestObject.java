@@ -37,6 +37,12 @@ public class TestObject implements GamePlaySceneObject {
 	
 	/** {@inheritDoc} */
 	@Override
+	public double getRadius(){
+		return 5;
+	}
+	
+	/** {@inheritDoc} */
+	@Override
 	public BufferedImage render(){
 		BufferedImage ret = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = (Graphics2D) ret.getGraphics();
@@ -54,7 +60,7 @@ public class TestObject implements GamePlaySceneObject {
 	/** {@inheritDoc} */
 	@Override
 	public int getZ(){
-		return -1;
+		return -2;
 	}
 	
 }

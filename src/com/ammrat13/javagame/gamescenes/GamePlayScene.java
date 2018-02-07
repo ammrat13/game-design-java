@@ -25,7 +25,7 @@ public class GamePlayScene implements GameScene {
 	public GameManager gm;
 	
 	/** A list of the objects in the game scene. */
-	private final ArrayList<GamePlaySceneObject> gpsos;
+	private ArrayList<GamePlaySceneObject> gpsos;
 	/** The pointer to the main player. */
 	private GamePlaySceneObject player;
 	
@@ -38,18 +38,6 @@ public class GamePlayScene implements GameScene {
 	 */
 	public GamePlayScene(GameManager gm){
 		this.gm = gm;
-		
-		// Scene setup
-		gpsos = Parse.parseLvl(this, LVLFILE);
-		player = gpsos.get(0);
-		// Sort the objects by z value, so the ones with less get rendered first
-		gpsos.sort(new Comparator<>() {
-			@Override
-			public int compare(GamePlaySceneObject o1, GamePlaySceneObject o2) {
-				return Integer.compare(o1.getZ(), o2.getZ());
-			}
-		});
-		
 		start();
 	}
 	
@@ -69,7 +57,18 @@ public class GamePlayScene implements GameScene {
 	
 	/** {@inheritDoc} */
 	@Override
-	public void start(){}
+	public void start(){
+		// Scene setup
+		gpsos = Parse.parseLvl(this, LVLFILE);
+		player = gpsos.get(0);
+		// Sort the objects by z value, so the ones with less get rendered first
+		gpsos.sort(new Comparator<>() {
+			@Override
+			public int compare(GamePlaySceneObject o1, GamePlaySceneObject o2) {
+				return Integer.compare(o1.getZ(), o2.getZ());
+			}
+		});
+	}
 	
 	/** {@inheritDoc} */
 	@Override

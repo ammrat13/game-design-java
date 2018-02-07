@@ -49,6 +49,14 @@ public class Vec {
 	}
 	
 	/**
+	 * Returns the absolute value of this vector.
+	 * @return {@code |this|}
+	 */
+	public double abs(){
+		return Math.sqrt(x*x+y*y);
+	}
+	
+	/**
 	 * Returns a copy of this vector
 	 * @return A copy of this vector
 	 */
