@@ -27,7 +27,7 @@ public class GameManager extends JPanel implements KeyListener {
 	public final int HEIGHT;
 	
 	/** The filename of the background music. This music is constant between scenes. */
-	private static final String BG_SOUND = "sound/MainMusic.wav";
+	private static final String BG_SOUND = "res/MainMusic.wav";
 	
 	/** The current system time. Used to pass change in time to scenes. */
 	private long time;

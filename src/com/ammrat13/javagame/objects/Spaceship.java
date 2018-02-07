@@ -40,7 +40,7 @@ public class Spaceship implements GamePlaySceneObject {
 	private static final int L = 70;
 	
 	/** The name of the file for the sound for when the engines are firing. */
-	private static final String FIRING_SOUND = "sound/FiringEffect.wav";
+	private static final String FIRING_SOUND = "res/FiringEffect.wav";
 	/** The sound clip for when the engines are firing. */
 	private Clip firingSoundClip;
 	
