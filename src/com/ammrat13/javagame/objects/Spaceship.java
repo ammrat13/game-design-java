@@ -49,14 +49,14 @@ public class Spaceship implements GamePlaySceneObject {
 	 * @param gps The game play scene passed in from above
 	 * @param xi The initial position of the ship
 	 * @param vi The initial velocity of the ship
-	 * @param theta The initial angle of the ship
+	 * @param t The initial angle of the ship
 	 */
-	public Spaceship(GamePlayScene gps, Vec xi, Vec vi, double theta){
+	public Spaceship(GamePlayScene gps, Vec xi, Vec vi, double t){
 		this.gps = gps;
 		
 		x = xi.copy();
 		v = vi.copy();
-		this.theta = theta;
+		theta = t;
 		f = false;
 		
 		// Sound
