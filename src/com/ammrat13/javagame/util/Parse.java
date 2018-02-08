@@ -1,10 +1,7 @@
 package com.ammrat13.javagame.util;
 
 import com.ammrat13.javagame.gamescenes.GamePlayScene;
-import com.ammrat13.javagame.objects.ExitPortal;
-import com.ammrat13.javagame.objects.GamePlaySceneObject;
-import com.ammrat13.javagame.objects.Spaceship;
-import com.ammrat13.javagame.objects.TestObject;
+import com.ammrat13.javagame.objects.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +36,8 @@ public class Parse {
 						ret.add(parseSpaceship(gps, lin));
 					if(lin.startsWith("ExitPortal"))
 						ret.add(parseExitPortal(gps, lin));
+					if(lin.startsWith("BlackHole"))
+						ret.add(parseBlackHole(gps, lin));
 					if(lin.startsWith("TestObject"))
 						ret.add(parseTestObject(gps, lin));
 				} catch(IllegalArgumentException e) {
@@ -94,7 +93,28 @@ public class Parse {
 			);
 		} catch(IndexOutOfBoundsException | NumberFormatException e){
 			e.printStackTrace();
-			throw new IllegalArgumentException("Failed to parse Spaceship: " + s);
+			throw new IllegalArgumentException("Failed to parse ExitPortal: " + s);
+		}
+	}
+	
+	/**
+	 * Takes in a String describing an {@code BlackHole} and parses it. The
+	 * format is {@code BlackHole x y}.
+	 * @param gps The {@code GamePlayScene} to pass to the black hole
+	 * @param s The String describing the black hole
+	 * @return The black hole
+	 * @throws IllegalArgumentException When the String is invalid
+	 */
+	private static BlackHole parseBlackHole(GamePlayScene gps, String s) throws IllegalArgumentException {
+		try {
+			String[] ts = s.split(" ");
+			return new BlackHole(
+					gps,
+					new Vec(Double.parseDouble(ts[1]), Double.parseDouble(ts[2]))
+			);
+		} catch(IndexOutOfBoundsException | NumberFormatException e){
+			e.printStackTrace();
+			throw new IllegalArgumentException("Failed to parse BlackHole: " + s);
 		}
 	}
 	

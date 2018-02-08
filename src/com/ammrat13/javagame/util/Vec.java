@@ -57,6 +57,14 @@ public class Vec {
 	}
 	
 	/**
+	 * Returns the norm of this vector.
+	 * @return {@code this/|this|}
+	 */
+	public Vec norm(){
+		return new Vec(x/Math.sqrt(x*x+y*y),y/Math.sqrt(x*x+y*y));
+	}
+	
+	/**
 	 * Returns a copy of this vector
 	 * @return A copy of this vector
 	 */

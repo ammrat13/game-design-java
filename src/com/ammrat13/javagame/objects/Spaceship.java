@@ -26,7 +26,7 @@ public class Spaceship implements GamePlaySceneObject {
 	/** The velocity of the ship. */
 	private Vec v;
 	/** The acceleration of the ship. */
-	private static final double a = 0.0001;
+	private static final double aeng = 0.0001;
 	
 	/** The angle of the ship above the right in radians. */
 	private double theta;
@@ -87,8 +87,7 @@ public class Spaceship implements GamePlaySceneObject {
 		// Acceleration and firing sound
 		if(kCodes.contains(KeyEvent.VK_UP)){
 			f = true;
-			v = v.add(new Vec(Math.cos(theta), Math.sin(theta)).mul(a*dt));
-			
+			v = v.add(new Vec(Math.cos(theta), Math.sin(theta)).mul(aeng*dt));
 			// If we are near the end of the clip, rewind
 			if(firingSoundClip.getFramePosition() >= firingSoundClip.getFrameLength() - 1000)
 				firingSoundClip.setFramePosition(0);
@@ -96,6 +95,17 @@ public class Spaceship implements GamePlaySceneObject {
 		} else {
 			f = false;
 			firingSoundClip.stop();
+		}
+		
+		// Black Holes
+		for(GamePlaySceneObject gpso : gps.getObjsOfClass("BlackHole")){
+			try {
+				BlackHole bh = (BlackHole) gpso;
+				Vec r = x.add(bh.getPos().mul(-1));
+				v = v.add(r.norm().mul( -1 * bh.GM/(r.abs()*r.abs()) ));
+			} catch(ClassCastException e){
+				e.printStackTrace();
+			}
 		}
 		
 		x = x.add(v.mul(dt));
