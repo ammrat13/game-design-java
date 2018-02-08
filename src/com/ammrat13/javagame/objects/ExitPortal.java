@@ -39,8 +39,10 @@ public class ExitPortal implements GamePlaySceneObject {
 	public void update(int dt, Set<Integer> kCodes){
 		Set<GamePlaySceneObject> spaceships = gps.getObjsOfClass("Spaceship");
 		for(GamePlaySceneObject gpso : spaceships){
-			if(gpso.getPos().add(x.mul(-1)).abs() <= getRadius()+gpso.getRadius())
+			if(gpso.getPos().add(x.mul(-1)).abs() <= getRadius()+gpso.getRadius()) {
+				gps.resetOnLoad();
 				gps.gm.setActive("WinScene");
+			}
 		}
 	}
 	

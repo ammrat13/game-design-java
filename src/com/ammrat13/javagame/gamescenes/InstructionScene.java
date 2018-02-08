@@ -52,6 +52,10 @@ public class InstructionScene implements GameScene {
 	
 	/** {@inheritDoc} */
 	@Override
+	public void resetOnLoad(){}
+	
+	/** {@inheritDoc} */
+	@Override
 	public void update(int dt){
 		if(gm.keysDown.contains(KeyEvent.VK_ESCAPE))
 			gm.setActive("TitleScene");

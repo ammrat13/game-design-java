@@ -21,6 +21,11 @@ public interface GameScene {
 	void stop();
 	
 	/**
+	 * Sets the scene to reset on the next load.
+	 */
+	void resetOnLoad();
+	
+	/**
 	 * To be called every frame.
 	 * @param dt The time that has passed since the last frame (ms)
 	 */

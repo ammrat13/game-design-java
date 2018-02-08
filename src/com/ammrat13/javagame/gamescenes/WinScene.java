@@ -70,9 +70,11 @@ public class WinScene implements GameScene {
 	
 	/** {@inheritDoc} */
 	@Override
-	public void stop(){
+	public void stop(){}
 	
-	}
+	/** {@inheritDoc} */
+	@Override
+	public void resetOnLoad(){}
 	
 	/** {@inheritDoc} */
 	@Override
