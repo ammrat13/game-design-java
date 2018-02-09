@@ -54,7 +54,7 @@ public class ExitPortal implements GamePlaySceneObject {
 	
 	/** {@inheritDoc} */
 	public double getRadius(){
-		return L/2.0;
+		return L/8.0;
 	}
 	
 	/** {@inheritDoc} */

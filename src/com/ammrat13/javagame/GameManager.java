@@ -7,10 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * This class will manage all aspects of the game, including scene cordination.
@@ -29,6 +27,9 @@ public class GameManager extends JPanel implements KeyListener {
 	/** The filename of the background music. This music is constant between scenes. */
 	private static final String BG_SOUND = "res/MainMusic.wav";
 	
+	/** How often to update in milliseconds. */
+	public final int UPFREQ = 30;
+	
 	/** The current system time. Used to pass change in time to scenes. */
 	private long time;
 	/** The set of keys that are pressed down. Passed to scenes. */
@@ -38,6 +39,9 @@ public class GameManager extends JPanel implements KeyListener {
 	private final Set<GameScene> gss;
 	/** The pointer to the active scene. */
 	private GameScene active;
+	
+	/** Public variables. */
+	public HashMap<String, Object> pubVars = new HashMap<>();
 	
 	/**
 	 * Constructs the game manager. Sets the width, height, and current time,
@@ -68,7 +72,7 @@ public class GameManager extends JPanel implements KeyListener {
 			public void run() {
 				update();
 			}
-		}, 0, 30);
+		}, 0, UPFREQ);
 		
 		// Loop the background sound forever
 		try{

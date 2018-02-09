@@ -2,6 +2,7 @@ package com.ammrat13.javagame.gamescenes;
 
 import com.ammrat13.javagame.GameManager;
 import com.ammrat13.javagame.objects.GamePlaySceneObject;
+import com.ammrat13.javagame.objects.Spaceship;
 import com.ammrat13.javagame.util.Parse;
 import com.ammrat13.javagame.util.Vec;
 
@@ -30,7 +31,7 @@ public class GamePlayScene implements GameScene {
 	/** A list of the objects in the game scene. */
 	private ArrayList<GamePlaySceneObject> gpsos;
 	/** The pointer to the main player. */
-	private GamePlaySceneObject player;
+	private Spaceship player;
 	
 	/** The file for the level itself. */
 	private final String LVLFILE = "res/level.lvl";
@@ -65,7 +66,7 @@ public class GamePlayScene implements GameScene {
 		if(resetOnLoad) {
 			// Scene setup
 			gpsos = Parse.parseLvl(this, LVLFILE);
-			player = gpsos.get(0);
+			player = (Spaceship) gpsos.get(0);
 			// Sort the objects by z value, so the ones with less get rendered first
 			gpsos.sort(new Comparator<>() {
 				@Override
@@ -112,6 +113,20 @@ public class GamePlayScene implements GameScene {
 		
 		// Make the player the one that is centered
 		Vec fPosCorr = player.getPos().mul(-1);
+		
+		// Draw the predicted lines before everything else
+		g2d.setColor(Color.WHITE);
+		ArrayList<Vec> pred = player.predict(2000, gm.UPFREQ);
+		for(int i=1; i<pred.size(); i++){
+			Vec x1 = pred.get(i-1).add(fPosCorr);
+			Vec x2 = pred.get(i).add(fPosCorr);
+			g2d.drawLine(
+					(int) x1.x, (int) x1.y,
+					(int) x2.x, (int) x2.y
+			);
+		}
+		
+		// Draw all the objects in increasing z order
 		for(GamePlaySceneObject gpso : gpsos){
 			g2d.drawImage(
 					gpso.render(),

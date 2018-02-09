@@ -59,7 +59,7 @@ public class BlackHole implements GamePlaySceneObject {
 	
 	/** {@inheritDoc} */
 	public double getRadius(){
-		return L/2.0;
+		return L/8.0;
 	}
 	
 	/** {@inheritDoc} */
@@ -86,7 +86,7 @@ public class BlackHole implements GamePlaySceneObject {
 	/** {@inheritDoc} */
 	@Override
 	public int getZ(){
-		return -1;
+		return 1;
 	}
 	
 }

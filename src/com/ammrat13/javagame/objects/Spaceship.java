@@ -8,6 +8,7 @@ import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -59,8 +60,44 @@ public class Spaceship implements GamePlaySceneObject {
 		theta = t;
 		f = false;
 		
+		// Scoring
+		gps.gm.pubVars.put("Score", 0);
+		
 		// Sound
 		firingSoundClip = Sound.getSoundClip(FIRING_SOUND);
+	}
+	
+	/**
+	 * Returns a list of position vectors that the spaceship will be at in the
+	 * next {@code n} frames. Engines are not taken into account; only black
+	 * holes are.
+	 * @param n How far ahead to predict
+	 * @param dt The frame step
+	 * @return The list of predicted position vectors
+	 */
+	public ArrayList<Vec> predict(int n, int dt){
+		ArrayList<Vec> ret = new ArrayList<>();
+		Vec xc = x.copy();
+		Vec vc = v.copy();
+		
+		ret.add(xc);
+		for(int i=0;i<n;i++){
+			// Acceleration logic
+			for(GamePlaySceneObject gpso : gps.getObjsOfClass("BlackHole")){
+				try {
+					BlackHole bh = (BlackHole) gpso;
+					Vec r = xc.add(bh.getPos().mul(-1));
+					vc = vc.add(r.norm().mul( -1 * bh.GM/(r.abs()*r.abs()) ));
+				} catch(ClassCastException e){
+					e.printStackTrace();
+				}
+			}
+			// Compute new position and update
+			xc = xc.add(vc.mul(dt));
+			ret.add(xc);
+		}
+		
+		return ret;
 	}
 	
 	/** {@inheritDoc} */
@@ -86,6 +123,9 @@ public class Spaceship implements GamePlaySceneObject {
 		
 		// Acceleration and firing sound
 		if(kCodes.contains(KeyEvent.VK_UP)){
+			// Increment the score
+			gps.gm.pubVars.put("Score", (Integer) gps.gm.pubVars.get("Score") + 1 );
+			
 			f = true;
 			v = v.add(new Vec(Math.cos(theta), Math.sin(theta)).mul(aeng*dt));
 			// If we are near the end of the clip, rewind
