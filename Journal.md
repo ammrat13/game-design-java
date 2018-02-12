@@ -1,5 +1,7 @@
 # Journal
 
+**12 February 2018**: Today I worked on Dutch Solitaire
+
 **8 February 2018**: Today I started implementing balck holes
 
 **7 February 2018**: Today I implemented level parsing and the exit portal
