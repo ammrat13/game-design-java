@@ -116,7 +116,7 @@ public class LoseScene implements GameScene {
 		g2d.setColor(Color.WHITE);
 		g2d.drawRect(MAR, MAR,gm.WIDTH-2*MAR, TBH);
 		g2d.setFont(TFON);
-		g2d.drawString(String.format("Score: %d", gm.pubVars.get("Score")), CEN - 210, MAR + TBH/2 + 20);
+		g2d.drawString("You Lose", CEN - 170, MAR + TBH/2 + 20);
 		
 		// Buttons
 		for(int b=0; b<buts.length; b++) {

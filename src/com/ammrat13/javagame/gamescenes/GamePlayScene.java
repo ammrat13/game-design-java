@@ -7,6 +7,7 @@ import com.ammrat13.javagame.util.Parse;
 import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -91,6 +92,12 @@ public class GamePlayScene implements GameScene {
 	/** {@inheritDoc} */
 	@Override
 	public void update(int dt){
+		// We only need to check the escape key
+		if(gm.keysDown.contains(KeyEvent.VK_ESCAPE)) {
+			resetOnLoad();
+			gm.setActive("LoseScene");
+		}
+		
 		// Update each object
 		for(GamePlaySceneObject gpso : gpsos)
 			gpso.update(dt, gm.keysDown);
