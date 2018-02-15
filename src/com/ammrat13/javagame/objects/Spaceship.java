@@ -189,6 +189,18 @@ public class Spaceship implements GamePlaySceneObject {
 	
 	/** {@inheritDoc} */
 	@Override
+	public BufferedImage mapRender() {
+		return null;
+	}
+	
+	/** {@inheritDoc} */
+	@Override
+	public Vec mapRenderOffset() {
+		return null;
+	}
+	
+	/** {@inheritDoc} */
+	@Override
 	public int getZ(){
 		return 0;
 	}

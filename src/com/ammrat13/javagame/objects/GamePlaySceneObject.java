@@ -48,6 +48,18 @@ public interface GamePlaySceneObject {
 	Vec renderOffset();
 	
 	/**
+	 * Returns the image of the object for the map.
+	 * @return The image to put on the map
+	 */
+	BufferedImage mapRender();
+	
+	/**
+	 * Returns the image's offset for the map image.
+	 * @return The vector to add to to the top-left corner to get to the center
+	 */
+	Vec mapRenderOffset();
+	
+	/**
 	 * Determines the drawing order on the scene. Lower z-values are drawn
 	 * first.
 	 * @return The z-value of the object

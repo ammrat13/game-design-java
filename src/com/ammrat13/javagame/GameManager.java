@@ -61,6 +61,7 @@ public class GameManager extends JPanel implements KeyListener {
 		gss.add(new TitleScene(this));
 		gss.add(new InstructionScene(this));
 		gss.add(new GamePlayScene(this));
+		gss.add(new PauseScene(this));
 		gss.add(new WinScene(this));
 		gss.add(new LoseScene(this));
 		setActive("TitleScene");

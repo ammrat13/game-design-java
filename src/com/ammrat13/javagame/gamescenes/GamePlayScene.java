@@ -37,6 +37,9 @@ public class GamePlayScene implements GameScene {
 	/** The file for the level itself. */
 	private final String LVLFILE = "res/level.lvl";
 	
+	/** This will store the keys we have down currently so we don't double count. */
+	private Set<Integer> kCodes;
+	
 	/**
 	 * Constructs the scene. Takes the game manager as input.
 	 * @param gm The game manager passed in from above
@@ -63,6 +66,8 @@ public class GamePlayScene implements GameScene {
 	/** {@inheritDoc} */
 	@Override
 	public void start(){
+		kCodes = new HashSet<>(gm.keysDown);
+		
 		// Only do this if we need to reset
 		if(resetOnLoad) {
 			// Scene setup
@@ -92,10 +97,13 @@ public class GamePlayScene implements GameScene {
 	/** {@inheritDoc} */
 	@Override
 	public void update(int dt){
+		if(!gm.keysDown.contains(KeyEvent.VK_ESCAPE))
+			kCodes.remove(KeyEvent.VK_ESCAPE);
+		
 		// We only need to check the escape key
-		if(gm.keysDown.contains(KeyEvent.VK_ESCAPE)) {
-			resetOnLoad();
-			gm.setActive("LoseScene");
+		if(gm.keysDown.contains(KeyEvent.VK_ESCAPE) && !kCodes.contains(KeyEvent.VK_ESCAPE)) {
+			kCodes.add(KeyEvent.VK_ESCAPE);
+			gm.setActive("PauseScene");
 		}
 		
 		// Update each object
