@@ -23,8 +23,8 @@ public class BlackHole implements GamePlaySceneObject {
 	/** The value specifying the thickness of the outline of the black hole. */
 	private final int MAR = 5;
 	
-	/** The value specifying the value {G*M} of the black hole. */
-	public final double GM = 50.0;
+	/** The value specifying the value {@code G*M} of the black hole. */
+	public final double GM;
 	
 	/** The position of the object. */
 	private Vec x;
@@ -33,10 +33,12 @@ public class BlackHole implements GamePlaySceneObject {
 	 * Constructs the black hole.
 	 * @param gps The gameplay scene passed in from above
 	 * @param x The position of the portal
+	 * @param GM The {@code G*M} of this black hole
 	 */
-	public BlackHole(GamePlayScene gps, Vec x){
+	public BlackHole(GamePlayScene gps, Vec x, double GM){
 		this.gps = gps;
 		this.x = x;
+		this.GM = GM;
 	}
 	
 	/** {@inheritDoc} */

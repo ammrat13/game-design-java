@@ -99,7 +99,7 @@ public class Parse {
 	
 	/**
 	 * Takes in a String describing an {@code BlackHole} and parses it. The
-	 * format is {@code BlackHole x y}.
+	 * format is {@code BlackHole x y GM}.
 	 * @param gps The {@code GamePlayScene} to pass to the black hole
 	 * @param s The String describing the black hole
 	 * @return The black hole
@@ -110,7 +110,8 @@ public class Parse {
 			String[] ts = s.split(" ");
 			return new BlackHole(
 					gps,
-					new Vec(Double.parseDouble(ts[1]), Double.parseDouble(ts[2]))
+					new Vec(Double.parseDouble(ts[1]), Double.parseDouble(ts[2])),
+					Double.parseDouble(ts[3])
 			);
 		} catch(IndexOutOfBoundsException | NumberFormatException e){
 			e.printStackTrace();

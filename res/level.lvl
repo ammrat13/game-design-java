@@ -1,7 +1,7 @@
 Spaceship 0 0 0 0 0
 TestObject 0 0
 ExitPortal 100 400
-BlackHole -300 -300
-BlackHole 300 300
-BlackHole -300 300
-BlackHole 400 -400
+BlackHole -300 -300 50.0
+BlackHole 300 300 50.0
+BlackHole -300 300 50.0
+BlackHole 400 -400 50.0
