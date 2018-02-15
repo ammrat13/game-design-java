@@ -1,5 +1,9 @@
 # Journal
 
+**15 February 2018**: Today I worked on the map
+
+**14 February 2018**: Today I worked on Physics and HAS
+
 **13 February 2018**: Today I studied for APUSH
 
 **12 February 2018**: Today I worked on Dutch Solitaire
