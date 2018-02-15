@@ -1,5 +1,7 @@
 # Journal
 
+**13 February 2018**: Today I studied for APUSH
+
 **12 February 2018**: Today I worked on Dutch Solitaire
 
 **8 February 2018**: Today I started implementing balck holes
