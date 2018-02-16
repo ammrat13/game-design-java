@@ -3,6 +3,7 @@ package com.ammrat13.javagame.gamescenes;
 import com.ammrat13.javagame.GameManager;
 import com.ammrat13.javagame.objects.GamePlaySceneObject;
 import com.ammrat13.javagame.objects.Spaceship;
+import com.ammrat13.javagame.util.Image;
 import com.ammrat13.javagame.util.Parse;
 import com.ammrat13.javagame.util.Vec;
 
@@ -32,7 +33,7 @@ public class GamePlayScene implements GameScene {
 	/** A list of the objects in the game scene. */
 	private ArrayList<GamePlaySceneObject> gpsos;
 	/** The pointer to the main player. */
-	private Spaceship player;
+	public Spaceship player;
 	
 	/** The file for the level itself. */
 	private final String LVLFILE = "res/level.lvl";
@@ -50,14 +51,14 @@ public class GamePlayScene implements GameScene {
 	}
 	
 	/**
-	 * Returns all the objects of the class specified.
+	 * Returns all the objects with a class matching the regex specified
 	 * @param cName The name of the class
-	 * @return A set of all such objects
+	 * @return A list of all such objects
 	 */
-	public Set<GamePlaySceneObject> getObjsOfClass(String cName){
-		Set<GamePlaySceneObject> ret = new HashSet<>();
+	public ArrayList<GamePlaySceneObject> getObjsOfClass(String cName){
+		ArrayList<GamePlaySceneObject> ret = new ArrayList<>();
 		for(GamePlaySceneObject gpso : gpsos){
-			if(gpso.getClass().getSimpleName().equals(cName))
+			if(gpso.getClass().getSimpleName().matches(cName))
 				ret.add(gpso);
 		}
 		return ret;
@@ -144,7 +145,7 @@ public class GamePlayScene implements GameScene {
 		// Draw all the objects in increasing z order
 		for(GamePlaySceneObject gpso : gpsos){
 			g2d.drawImage(
-					gpso.render(),
+					Image.flipVert(gpso.render()),
 					(int) (gpso.getPos().add(gpso.renderOffset()).add(fPosCorr)).x,
 					(int) (gpso.getPos().add(gpso.renderOffset()).add(fPosCorr)).y,
 					null

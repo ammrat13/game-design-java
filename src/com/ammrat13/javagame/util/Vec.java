@@ -36,6 +36,8 @@ public class Vec {
 	 * @return {@code this + v}
 	 */
 	public Vec add(Vec v){
+		if(v == null)
+			return this.copy();
 		return new Vec(this.x + v.x, this.y + v.y);
 	}
 	

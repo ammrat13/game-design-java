@@ -1,9 +1,13 @@
 package com.ammrat13.javagame.gamescenes;
 
 import com.ammrat13.javagame.GameManager;
+import com.ammrat13.javagame.objects.GamePlaySceneObject;
+import com.ammrat13.javagame.util.Image;
+import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,6 +32,9 @@ public class PauseScene implements GameScene {
 	private final int TBH = 120;
 	/** The font of the title. */
 	private final Font TFON = new Font(null, Font.BOLD, 70);
+	
+	/** The scale of the map as a decimal. */
+	private double mSC = 0.3;
 	
 	/** This will store the keys we have down currently so we don't double count. */
 	private Set<Integer> kCodes;
@@ -81,6 +88,27 @@ public class PauseScene implements GameScene {
 		// Background
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0,0, gm.WIDTH, gm.HEIGHT);
+		
+		// Center the map
+		g2d.translate(CEN, 2*MAR+TBH + (gm.HEIGHT-4*MAR-TBH)/2);
+		g2d.transform(new AffineTransform(1, 0, 0, -1, 0, 0));
+		
+		// Get each game object and render it
+		GamePlayScene gps = (GamePlayScene) gm.getScene("GamePlayScene");
+		Vec pPosCor = gps.player.getPos().mul(-1);
+		for(GamePlaySceneObject gpso : gps.getObjsOfClass("(?s).*")){
+			g2d.drawImage(
+				Image.flipVert(gpso.mapRender()),
+				(int) gpso.getPos().add(pPosCor).mul(mSC).add(gpso.mapRenderOffset()).x,
+				(int) gpso.getPos().add(pPosCor).mul(mSC).add(gpso.mapRenderOffset()).y,
+				null
+			);
+		}
+		
+		// Do this second to cover everything out of bounds
+		// Revert changes
+		g2d.transform(new AffineTransform(1, 0, 0, -1, 0, 0));
+		g2d.translate(-CEN, -2*MAR-TBH - (gm.HEIGHT-4*MAR-TBH)/2);
 		
 		// Title block
 		g2d.setColor(Color.WHITE);

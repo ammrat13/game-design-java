@@ -39,6 +39,8 @@ public class Spaceship implements GamePlaySceneObject {
 	
 	/** The parameter determining the size of the ship. */
 	private static final int L = 70;
+	/** The parameter determining the size of the ship on the map. */
+	private static final int mL = 10;
 	
 	/** The name of the file for the sound for when the engines are firing. */
 	private static final String FIRING_SOUND = "res/FiringEffect.wav";
@@ -159,7 +161,7 @@ public class Spaceship implements GamePlaySceneObject {
 		
 		// Origin is center
 		g2d.translate(L, L);
-		g2d.rotate(theta);
+		g2d.rotate(-theta);
 		
 		// Main body
 		g2d.setColor(Color.WHITE);
@@ -190,13 +192,20 @@ public class Spaceship implements GamePlaySceneObject {
 	/** {@inheritDoc} */
 	@Override
 	public BufferedImage mapRender() {
-		return null;
+		BufferedImage ret = new BufferedImage(mL, (int) (mL*Math.sqrt(3)/2), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = (Graphics2D) ret.getGraphics();
+		
+		// A white triangle
+		g2d.setColor(Color.WHITE);
+		g2d.fillPolygon(new int[]{0,mL/2,mL}, new int[]{(int) (mL*Math.sqrt(3)/2),0,(int) (mL*Math.sqrt(3)/2)}, 3);
+		
+		return ret;
 	}
 	
 	/** {@inheritDoc} */
 	@Override
 	public Vec mapRenderOffset() {
-		return null;
+		return new Vec(-mL/2, (int) (-mL*Math.sqrt(3)/4));
 	}
 	
 	/** {@inheritDoc} */

@@ -103,6 +103,20 @@ public class GameManager extends JPanel implements KeyListener {
 	}
 	
 	/**
+	 * Returns the reference to a given scene.
+	 * @param ags The name of the scene to return
+	 */
+	
+	public GameScene getScene(String ags){
+		// Find the scene we want to return
+		for(GameScene gs : gss){
+			if(gs.getClass().getSimpleName().equals(ags))
+				return gs;
+		}
+		return null;
+	}
+	
+	/**
 	 * Called every frame to update the game.
 	 */
 	

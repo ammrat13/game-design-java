@@ -5,6 +5,7 @@ import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -37,7 +38,7 @@ public class ExitPortal implements GamePlaySceneObject {
 	/** {@inheritDoc} */
 	@Override
 	public void update(int dt, Set<Integer> kCodes){
-		Set<GamePlaySceneObject> spaceships = gps.getObjsOfClass("Spaceship");
+		ArrayList<GamePlaySceneObject> spaceships = gps.getObjsOfClass("Spaceship");
 		for(GamePlaySceneObject gpso : spaceships){
 			if(gpso.getPos().add(x.mul(-1)).abs() <= getRadius()+gpso.getRadius()) {
 				gps.resetOnLoad();
