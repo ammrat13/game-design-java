@@ -1,5 +1,7 @@
 # Journal
 
+**16 February 2018**: Today I started working on the map objects
+
 **15 February 2018**: Today I worked on the map
 
 **14 February 2018**: Today I worked on Physics and HAS
