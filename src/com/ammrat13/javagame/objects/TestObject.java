@@ -60,13 +60,19 @@ public class TestObject implements GamePlaySceneObject {
 	/** {@inheritDoc} */
 	@Override
 	public BufferedImage mapRender() {
-		return null;
+		BufferedImage ret = new BufferedImage(4, 4, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = (Graphics2D) ret.getGraphics();
+		
+		g2d.setColor(Color.WHITE);
+		g2d.fillRect(0, 0, 4, 4);
+		
+		return ret;
 	}
 	
 	/** {@inheritDoc} */
 	@Override
 	public Vec mapRenderOffset() {
-		return null;
+		return new Vec(-2, -2);
 	}
 	
 	/** {@inheritDoc} */

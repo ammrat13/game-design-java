@@ -21,6 +21,8 @@ public class BlackHole implements GamePlaySceneObject {
 	
 	/** The value specifying the dimensions of the black hole. */
 	private final int L = 50;
+	/** The value specifying the dimensions of the black hole in map mode. */
+	private final int LMAP = 10;
 	/** The value specifying the thickness of the outline of the black hole. */
 	private final int MAR = 5;
 	
@@ -89,13 +91,19 @@ public class BlackHole implements GamePlaySceneObject {
 	/** {@inheritDoc} */
 	@Override
 	public BufferedImage mapRender() {
-		return null;
+		BufferedImage ret = new BufferedImage(LMAP, LMAP, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = (Graphics2D) ret.getGraphics();
+		
+		g2d.setColor(Color.WHITE);
+		g2d.drawOval(0, 0, LMAP, LMAP);
+		
+		return ret;
 	}
 	
 	/** {@inheritDoc} */
 	@Override
 	public Vec mapRenderOffset() {
-		return null;
+		return new Vec(-LMAP/2, -LMAP/2);
 	}
 	
 	/** {@inheritDoc} */

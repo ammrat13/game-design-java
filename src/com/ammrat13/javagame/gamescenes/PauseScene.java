@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class PauseScene implements GameScene {
 	private final Font TFON = new Font(null, Font.BOLD, 70);
 	
 	/** The scale of the map as a decimal. */
-	private double mSC = 0.3;
+	private double mSC = 0.2;
 	
 	/** This will store the keys we have down currently so we don't double count. */
 	private Set<Integer> kCodes;
@@ -93,9 +94,22 @@ public class PauseScene implements GameScene {
 		g2d.translate(CEN, 2*MAR+TBH + (gm.HEIGHT-4*MAR-TBH)/2);
 		g2d.transform(new AffineTransform(1, 0, 0, -1, 0, 0));
 		
-		// Get each game object and render it
 		GamePlayScene gps = (GamePlayScene) gm.getScene("GamePlayScene");
 		Vec pPosCor = gps.player.getPos().mul(-1);
+		
+		// Draw the predicted lines before everything else
+		g2d.setColor(Color.WHITE);
+		ArrayList<Vec> pred = gps.player.predict(4000, gm.UPFREQ);
+		for(int i=1; i<pred.size(); i++){
+			Vec x1 = pred.get(i-1).add(pPosCor).mul(mSC);
+			Vec x2 = pred.get(i).add(pPosCor).mul(mSC);
+			g2d.drawLine(
+					(int) x1.x, (int) x1.y,
+					(int) x2.x, (int) x2.y
+			);
+		}
+		
+		// Get each game object and render it
 		for(GamePlaySceneObject gpso : gps.getObjsOfClass("(?s).*")){
 			g2d.drawImage(
 				Image.flipVert(gpso.mapRender()),
@@ -109,6 +123,13 @@ public class PauseScene implements GameScene {
 		// Revert changes
 		g2d.transform(new AffineTransform(1, 0, 0, -1, 0, 0));
 		g2d.translate(-CEN, -2*MAR-TBH - (gm.HEIGHT-4*MAR-TBH)/2);
+		
+		// Draw around the map
+		g2d.setColor(Color.BLACK);
+		g2d.fillRect(0, 0, gm.WIDTH, 2*MAR + TBH);
+		g2d.fillRect(0, 0, MAR, gm.HEIGHT);
+		g2d.fillRect(gm.WIDTH-MAR, 0, MAR, gm.HEIGHT);
+		g2d.fillRect(0, gm.HEIGHT-2*MAR, gm.WIDTH, MAR+1);
 		
 		// Title block
 		g2d.setColor(Color.WHITE);

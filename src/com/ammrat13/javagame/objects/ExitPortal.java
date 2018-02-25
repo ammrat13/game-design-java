@@ -21,6 +21,8 @@ public class ExitPortal implements GamePlaySceneObject {
 	
 	/** The value specifying the dimensions of the portal. */
 	private final int L = 50;
+	/** The value specifying the dimensions of the portal in map mode. */
+	private final int LMAP = 10;
 	
 	/** The position of the object. */
 	private Vec x;
@@ -79,13 +81,19 @@ public class ExitPortal implements GamePlaySceneObject {
 	/** {@inheritDoc} */
 	@Override
 	public BufferedImage mapRender() {
-		return null;
+		BufferedImage ret = new BufferedImage(LMAP, LMAP, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = (Graphics2D) ret.getGraphics();
+		
+		g2d.setColor(new Color(255,255,122));
+		g2d.fillOval(0, 0, LMAP, LMAP);
+		
+		return ret;
 	}
 	
 	/** {@inheritDoc} */
 	@Override
 	public Vec mapRenderOffset() {
-		return null;
+		return new Vec(-LMAP/2, -LMAP/2);
 	}
 	
 	/** {@inheritDoc} */
