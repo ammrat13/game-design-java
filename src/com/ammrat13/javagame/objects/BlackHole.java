@@ -63,6 +63,7 @@ public class BlackHole implements GamePlaySceneObject {
 		for(GamePlaySceneObject gpso : spaceships){
 			if(gpso.getPos().add(x.mul(-1)).abs() <= getRadius()+gpso.getRadius()) {
 				gps.resetOnLoad();
+				gps.gm.pubVars.put("Lost", null);
 				gps.gm.setActive("LoseScene");
 			}
 		}

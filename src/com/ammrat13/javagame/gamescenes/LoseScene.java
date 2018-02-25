@@ -1,6 +1,7 @@
 package com.ammrat13.javagame.gamescenes;
 
 import com.ammrat13.javagame.GameManager;
+import com.ammrat13.javagame.util.Sound;
 import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
@@ -66,6 +67,12 @@ public class LoseScene implements GameScene {
 	@Override
 	public void start(){
 		kCodesDown = new HashSet<>(gm.keysDown);
+		
+		// Play the loss sound effect if the player has lost
+		if(gm.pubVars.containsKey("Lost")) {
+			gm.pubVars.remove("Lost");
+			Sound.getSoundClip("res/ErrorEffect.wav").start();
+		}
 	}
 	
 	/** {@inheritDoc} */
