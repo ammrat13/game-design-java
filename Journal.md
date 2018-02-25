@@ -1,5 +1,11 @@
 # Journal
 
+**24 February 2018**: Today I finished up the map screen
+
+**23 February 2018**: Today I worked on Statistics
+
+**19 February 2018**: Today I studied for DECA
+
 **16 February 2018**: Today I started working on the map objects
 
 **15 February 2018**: Today I worked on the map
