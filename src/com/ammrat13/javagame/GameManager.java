@@ -24,9 +24,6 @@ public class GameManager extends JPanel implements KeyListener {
 	/** The height of the canvas. */
 	public final int HEIGHT;
 	
-	/** The filename of the background music. This music is constant between scenes. */
-	private static final String BG_SOUND = "res/MainMusic.wav";
-	
 	/** How often to update in milliseconds. */
 	public final int UPFREQ = 30;
 	
@@ -77,7 +74,7 @@ public class GameManager extends JPanel implements KeyListener {
 		
 		// Loop the background sound forever
 		try{
-			Sound.getSoundClip(BG_SOUND).loop(-1);
+			Sound.getSoundClip("res/MainMusic.wav").loop(-1);
 		} catch(NullPointerException e){
 			e.printStackTrace();
 		}
@@ -89,12 +86,12 @@ public class GameManager extends JPanel implements KeyListener {
 	 */
 	
 	public void setActive(String ags){
-		// Stop the current active scene
-		if(active != null)
-			active.stop();
 		// Find the scene we want to make active
 		for(GameScene gs : gss){
 			if(gs.getClass().getSimpleName().equals(ags)){
+				// Stop the current active scene
+				if(active != null)
+					active.stop();
 				active = gs;
 				active.start();
 				break;

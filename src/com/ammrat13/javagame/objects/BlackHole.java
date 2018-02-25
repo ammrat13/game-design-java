@@ -46,6 +46,18 @@ public class BlackHole implements GamePlaySceneObject {
 	
 	/** {@inheritDoc} */
 	@Override
+	public void start(){
+	
+	}
+	
+	/** {@inheritDoc} */
+	@Override
+	public void stop(){
+	
+	}
+	
+	/** {@inheritDoc} */
+	@Override
 	public void update(int dt, Set<Integer> kCodes){
 		ArrayList<GamePlaySceneObject> spaceships = gps.getObjsOfClass("Spaceship");
 		for(GamePlaySceneObject gpso : spaceships){

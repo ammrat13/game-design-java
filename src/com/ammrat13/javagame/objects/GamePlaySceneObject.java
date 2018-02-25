@@ -15,6 +15,16 @@ import java.util.Set;
 public interface GamePlaySceneObject {
 	
 	/**
+	 * This method will be called whenever the scene is reloaded.
+	 */
+	void start();
+	
+	/**
+	 * This method will be called whenever the scene is taken out of focus.
+	 */
+	void stop();
+	
+	/**
 	 * This method will be used to update the object every frame.
 	 * @param dt The time that has passed since the last frame (ms)
 	 * @param kCodes The set of keys that are pressed down

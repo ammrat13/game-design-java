@@ -39,11 +39,25 @@ public class ExitPortal implements GamePlaySceneObject {
 	
 	/** {@inheritDoc} */
 	@Override
+	public void start(){
+	
+	}
+	
+	/** {@inheritDoc} */
+	@Override
+	public void stop(){
+	
+	}
+	
+	/** {@inheritDoc} */
+	@Override
 	public void update(int dt, Set<Integer> kCodes){
 		ArrayList<GamePlaySceneObject> spaceships = gps.getObjsOfClass("Spaceship");
 		for(GamePlaySceneObject gpso : spaceships){
 			if(gpso.getPos().add(x.mul(-1)).abs() <= getRadius()+gpso.getRadius()) {
 				gps.resetOnLoad();
+				// Flag that the player has won
+				gps.gm.pubVars.put("Won", null);
 				gps.gm.setActive("WinScene");
 			}
 		}

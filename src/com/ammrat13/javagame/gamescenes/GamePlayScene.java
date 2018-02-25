@@ -83,11 +83,17 @@ public class GamePlayScene implements GameScene {
 			});
 		}
 		resetOnLoad = false;
+		
+		for(GamePlaySceneObject gpso : gpsos)
+			gpso.start();
 	}
 	
 	/** {@inheritDoc} */
 	@Override
-	public void stop(){}
+	public void stop(){
+		for(GamePlaySceneObject gpso : gpsos)
+			gpso.stop();
+	}
 	
 	/** {@inheritDoc} */
 	@Override

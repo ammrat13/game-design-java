@@ -36,6 +36,18 @@ public class TestMovingObject implements GamePlaySceneObject {
 	
 	/** {@inheritDoc} */
 	@Override
+	public void start(){
+	
+	}
+	
+	/** {@inheritDoc} */
+	@Override
+	public void stop(){
+	
+	}
+	
+	/** {@inheritDoc} */
+	@Override
 	public void update(int dt, Set<Integer> kCodes){
 		System.out.println(dt);
 		if(kCodes.contains(KeyEvent.VK_LEFT))

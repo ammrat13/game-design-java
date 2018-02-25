@@ -42,8 +42,6 @@ public class Spaceship implements GamePlaySceneObject {
 	/** The parameter determining the size of the ship on the map. */
 	private static final int mL = 10;
 	
-	/** The name of the file for the sound for when the engines are firing. */
-	private static final String FIRING_SOUND = "res/FiringEffect.wav";
 	/** The sound clip for when the engines are firing. */
 	private Clip firingSoundClip;
 	
@@ -65,8 +63,7 @@ public class Spaceship implements GamePlaySceneObject {
 		// Scoring
 		gps.gm.pubVars.put("Score", 0);
 		
-		// Sound
-		firingSoundClip = Sound.getSoundClip(FIRING_SOUND);
+		start();
 	}
 	
 	/**
@@ -104,6 +101,20 @@ public class Spaceship implements GamePlaySceneObject {
 	
 	/** {@inheritDoc} */
 	@Override
+	public void start(){
+		// Sound
+		firingSoundClip = Sound.getSoundClip("res/FiringEffect.wav");
+	}
+	
+	/** {@inheritDoc} */
+	@Override
+	public void stop(){
+		firingSoundClip.stop();
+		firingSoundClip = null;
+	}
+	
+	/** {@inheritDoc} */
+	@Override
 	public Vec getPos(){
 		return x;
 	}
@@ -130,13 +141,16 @@ public class Spaceship implements GamePlaySceneObject {
 			
 			f = true;
 			v = v.add(new Vec(Math.cos(theta), Math.sin(theta)).mul(aeng*dt));
-			// If we are near the end of the clip, rewind
-			if(firingSoundClip.getFramePosition() >= firingSoundClip.getFrameLength() - 1000)
-				firingSoundClip.setFramePosition(0);
-			firingSoundClip.start();
+			if(firingSoundClip != null) {
+				// If we are near the end of the clip, rewind
+				if(firingSoundClip.getFramePosition() >= firingSoundClip.getFrameLength() - 10)
+					firingSoundClip.setFramePosition(0);
+				firingSoundClip.start();
+			}
 		} else {
 			f = false;
-			firingSoundClip.stop();
+			if(firingSoundClip != null)
+				firingSoundClip.stop();
 		}
 		
 		// Black Holes

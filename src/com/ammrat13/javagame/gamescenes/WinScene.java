@@ -1,6 +1,7 @@
 package com.ammrat13.javagame.gamescenes;
 
 import com.ammrat13.javagame.GameManager;
+import com.ammrat13.javagame.util.Sound;
 import com.ammrat13.javagame.util.Vec;
 
 import java.awt.*;
@@ -66,6 +67,12 @@ public class WinScene implements GameScene {
 	@Override
 	public void start(){
 		kCodesDown = new HashSet<>(gm.keysDown);
+		
+		// Play the victory sound effect if the player has won
+		if(gm.pubVars.containsKey("Won")) {
+			gm.pubVars.remove("Won");
+			Sound.getSoundClip("res/VictoryEffect.wav").start();
+		}
 	}
 	
 	/** {@inheritDoc} */

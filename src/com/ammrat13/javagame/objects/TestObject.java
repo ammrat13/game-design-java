@@ -29,6 +29,18 @@ public class TestObject implements GamePlaySceneObject {
 	
 	/** {@inheritDoc} */
 	@Override
+	public void start(){
+	
+	}
+	
+	/** {@inheritDoc} */
+	@Override
+	public void stop(){
+	
+	}
+	
+	/** {@inheritDoc} */
+	@Override
 	public void update(int dt, Set<Integer> kCodes){}
 	
 	/** {@inheritDoc} */
