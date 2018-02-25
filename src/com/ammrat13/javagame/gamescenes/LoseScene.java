@@ -71,7 +71,7 @@ public class LoseScene implements GameScene {
 		// Play the loss sound effect if the player has lost
 		if(gm.pubVars.containsKey("Lost")) {
 			gm.pubVars.remove("Lost");
-			Sound.getSoundClip("res/ErrorEffect.wav").start();
+			Sound.getSoundClip("res/LossEffect.wav").start();
 		}
 	}
 	
