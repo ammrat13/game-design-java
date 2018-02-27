@@ -33,6 +33,8 @@ public class PauseScene implements GameScene {
 	private final int TBH = 120;
 	/** The font of the title. */
 	private final Font TFON = new Font(null, Font.BOLD, 70);
+	/** The font of the other text. */
+	private final Font FON = new Font(null, Font.BOLD, 10);
 	
 	/** The scale of the map as a decimal. */
 	private double mSC = 0.2;
@@ -73,10 +75,16 @@ public class PauseScene implements GameScene {
 		if(!gm.keysDown.contains(KeyEvent.VK_ESCAPE))
 			kCodes.remove(KeyEvent.VK_ESCAPE);
 		
-		// We only need to check the escape key
+		// Resume button
 		if(gm.keysDown.contains(KeyEvent.VK_ESCAPE) && !kCodes.contains(KeyEvent.VK_ESCAPE)) {
 			kCodes.add(KeyEvent.VK_ESCAPE);
 			gm.setActive("GamePlayScene");
+		}
+		
+		// Reset button
+		if(gm.keysDown.contains(KeyEvent.VK_Q)){
+			gm.getScene("GamePlayScene").resetOnLoad();
+			gm.setActive("TitleScene");
 		}
 	}
 	
@@ -139,6 +147,10 @@ public class PauseScene implements GameScene {
 		
 		// Map outline
 		g2d.drawRect(MAR, 2*MAR+TBH, gm.WIDTH-2*MAR, gm.HEIGHT-4*MAR-TBH);
+		
+		// Controls Text
+		g2d.setFont(FON);
+		g2d.drawString("ESC: Resume; Q: Quit", MAR, gm.HEIGHT-MAR-10);
 		
 		return ret;
 	}
