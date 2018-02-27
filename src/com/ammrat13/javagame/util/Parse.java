@@ -40,6 +40,8 @@ public class Parse {
 						ret.add(parseBlackHole(gps, lin));
 					if(lin.startsWith("TestObject"))
 						ret.add(parseTestObject(gps, lin));
+					if(lin.startsWith("Key"))
+						ret.add(parseKey(gps, lin));
 				} catch(IllegalArgumentException e) {
 					e.printStackTrace();
 				}
@@ -133,6 +135,28 @@ public class Parse {
 			return new TestObject(
 					gps,
 					new Vec(Double.parseDouble(ts[1]), Double.parseDouble(ts[2]))
+			);
+		} catch(IndexOutOfBoundsException | NumberFormatException e){
+			e.printStackTrace();
+			throw new IllegalArgumentException("Failed to parse TestObject: " + s);
+		}
+	}
+	
+	/**
+	 * Takes in a String describing a {@code Key} and parses it. The
+	 * format is {@code Key x y col}.
+	 * @param gps The {@code GamePlayScene} to pass to the key
+	 * @param s The String describing the key
+	 * @return The key
+	 * @throws IllegalArgumentException When the String is invalid
+	 */
+	private static Key parseKey(GamePlayScene gps, String s) throws IllegalArgumentException {
+		try {
+			String[] ts = s.split(" ");
+			return new Key(
+					gps,
+					new Vec(Double.parseDouble(ts[1]), Double.parseDouble(ts[2])),
+					Boolean.parseBoolean(ts[3])
 			);
 		} catch(IndexOutOfBoundsException | NumberFormatException e){
 			e.printStackTrace();

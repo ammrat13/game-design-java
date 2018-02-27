@@ -52,13 +52,17 @@ public class ExitPortal implements GamePlaySceneObject {
 	/** {@inheritDoc} */
 	@Override
 	public void update(int dt, Set<Integer> kCodes){
-		ArrayList<GamePlaySceneObject> spaceships = gps.getObjsOfClass("Spaceship");
-		for(GamePlaySceneObject gpso : spaceships){
-			if(gpso.getPos().add(x.mul(-1)).abs() <= getRadius()+gpso.getRadius()) {
-				gps.resetOnLoad();
-				// Flag that the player has won
-				gps.gm.pubVars.put("Won", null);
-				gps.gm.setActive("WinScene");
+		// Only check if the spaceship is close enough if all keys have been collected
+		System.out.println(gps.gm.pubVars.get("Keys") + " " + gps.gm.pubVars.get("KeysReq"));
+		if(gps.gm.pubVars.get("Keys").equals(gps.gm.pubVars.get("KeysReq"))) {
+			ArrayList<GamePlaySceneObject> spaceships = gps.getObjsOfClass("Spaceship");
+			for(GamePlaySceneObject gpso : spaceships) {
+				if(gpso.getPos().add(x.mul(-1)).abs() <= getRadius() + gpso.getRadius()) {
+					gps.resetOnLoad();
+					// Flag that the player has won
+					gps.gm.pubVars.put("Won", null);
+					gps.gm.setActive("WinScene");
+				}
 			}
 		}
 	}
