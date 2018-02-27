@@ -1,5 +1,7 @@
 # Journal
 
+**27 February 2018**: Today I worked on the keys
+
 **24 February 2018**: Today I finished up the map screen and added victory and loss sound effects
 
 **23 February 2018**: Today I worked on Statistics
