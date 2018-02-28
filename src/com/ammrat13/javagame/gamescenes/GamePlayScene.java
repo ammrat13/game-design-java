@@ -71,11 +71,14 @@ public class GamePlayScene implements GameScene {
 		
 		// Only do this if we need to reset
 		if(resetOnLoad) {
+			// Clear the keys
+			gm.pubVars.remove("Keys");
+			gm.pubVars.remove("KeysReq");
 			// Scene setup
 			gpsos = Parse.parseLvl(this, LVLFILE);
 			player = (Spaceship) gpsos.get(0);
 			// Sort the objects by z value, so the ones with less get rendered first
-			gpsos.sort(new Comparator<>() {
+			gpsos.sort(new Comparator<GamePlaySceneObject>() {
 				@Override
 				public int compare(GamePlaySceneObject o1, GamePlaySceneObject o2) {
 					return Integer.compare(o1.getZ(), o2.getZ());
