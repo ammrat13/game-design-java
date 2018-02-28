@@ -1,5 +1,7 @@
 # Journal
 
+**28 February 2018**: Today I play-tested, updated the instructions page, and refactored
+
 **27 February 2018**: Today I worked on the keys
 
 **24 February 2018**: Today I finished up the map screen and added victory and loss sound effects
