@@ -53,7 +53,6 @@ public class ExitPortal implements GamePlaySceneObject {
 	@Override
 	public void update(int dt, Set<Integer> kCodes){
 		// Only check if the spaceship is close enough if all keys have been collected
-		System.out.println(gps.gm.pubVars.get("Keys") + " " + gps.gm.pubVars.get("KeysReq"));
 		if(gps.gm.pubVars.get("Keys").equals(gps.gm.pubVars.get("KeysReq"))) {
 			ArrayList<GamePlaySceneObject> spaceships = gps.getObjsOfClass("Spaceship");
 			for(GamePlaySceneObject gpso : spaceships) {
@@ -84,7 +83,11 @@ public class ExitPortal implements GamePlaySceneObject {
 		BufferedImage ret = new BufferedImage(L, L, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = (Graphics2D) ret.getGraphics();
 		
-		g2d.setColor(new Color(255,255,122));
+		// Be a different color depending on if we have all the keys
+		if(gps.gm.pubVars.get("Keys").equals(gps.gm.pubVars.get("KeysReq")))
+			g2d.setColor(new Color(255,255,122));
+		else
+			g2d.setColor(new Color(201, 186, 156));
 		g2d.fillOval(0, 0, L, L);
 		
 		return ret;
@@ -102,7 +105,11 @@ public class ExitPortal implements GamePlaySceneObject {
 		BufferedImage ret = new BufferedImage(LMAP, LMAP, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = (Graphics2D) ret.getGraphics();
 		
-		g2d.setColor(new Color(255,255,122));
+		// Be a different color depending on if we have all the keys
+		if(gps.gm.pubVars.get("Keys").equals(gps.gm.pubVars.get("KeysReq")))
+			g2d.setColor(new Color(255,255,122));
+		else
+			g2d.setColor(new Color(201, 186, 156));
 		g2d.fillOval(0, 0, LMAP, LMAP);
 		
 		return ret;
