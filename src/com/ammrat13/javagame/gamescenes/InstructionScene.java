@@ -31,7 +31,7 @@ public class InstructionScene implements GameScene {
 	/** The font of the instructions. */
 	private final Font IFON = new Font(null, 0, 20);
 	/** The instruction content. */
-	private final String INSTSTR = "Controls:\nUP: Accelerate    LEFT: Turn Left\nRIGHT: Turn Right    ESC: Pause/Exit\nQ: Quit (From pause)\n\nGet to the yellow exit after collecting all the keys.\nLower scores are better.";
+	private final String INSTSTR = "Controls:\nUP: Accelerate    LEFT: Turn Left\nRIGHT: Turn Right    ESC: Pause/Exit\nQ: Quit (From pause)\n\nGet to the yellow exit after collecting all the keys.\nThe pause screen has a map.\nThe white line is your predicted path.\nLower scores are better.";
 	
 	/**
 	 * Constructs the scene. Takes the game manager as input.
