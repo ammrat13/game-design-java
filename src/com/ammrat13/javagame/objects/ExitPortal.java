@@ -17,7 +17,7 @@ import java.util.Set;
 public class ExitPortal implements GamePlaySceneObject {
 	
 	/** The gameplay scene passed in from above. */
-	private GamePlayScene gps;
+	private final GamePlayScene gps;
 	
 	/** The value specifying the dimensions of the portal. */
 	private final int L = 50;
@@ -25,7 +25,7 @@ public class ExitPortal implements GamePlaySceneObject {
 	private final int LMAP = 10;
 	
 	/** The position of the object. */
-	private Vec x;
+	private final Vec x;
 	
 	/**
 	 * Constructs the portal.

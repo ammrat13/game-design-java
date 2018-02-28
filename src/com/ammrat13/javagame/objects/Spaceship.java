@@ -20,10 +20,10 @@ import java.util.Set;
 public class Spaceship implements GamePlaySceneObject {
 	
 	/** The gameplay scene passed in from above. */
-	private GamePlayScene gps;
+	private final GamePlayScene gps;
 	
 	/** The position of the ship. */
-	public Vec x;
+	private Vec x;
 	/** The velocity of the ship. */
 	private Vec v;
 	/** The acceleration of the ship. */

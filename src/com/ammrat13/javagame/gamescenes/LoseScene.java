@@ -19,7 +19,7 @@ import java.util.Set;
 public class LoseScene implements GameScene {
 	
 	/** The game manager passed in from above. */
-	private GameManager gm;
+	private final GameManager gm;
 	
 	/** The margins on the lose scene. */
 	private final int MAR = 30;
@@ -42,11 +42,11 @@ public class LoseScene implements GameScene {
 	private final int AH = 30;
 	
 	/** The list of all the buttons we have. */
-	private String[] buts = new String[]{"Restart", "Quit"};
+	private final String[] buts = new String[]{"Restart", "Quit"};
 	/** The list of the scenes the buttons correspond to. */
-	private String[] butScen = new String[]{"GamePlayScene", "TitleScene"};
+	private final String[] butScen = new String[]{"GamePlayScene", "TitleScene"};
 	/** The list of offsets for the text in the buttons */
-	private Vec[] butOff = new Vec[]{new Vec(-70,15), new Vec(-50,15)};
+	private final Vec[] butOff = new Vec[]{new Vec(-70,15), new Vec(-50,15)};
 	/** Stores the index of the active button. */
 	private int actI = 0;
 	

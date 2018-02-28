@@ -25,7 +25,7 @@ import java.util.Set;
 public class GamePlayScene implements GameScene {
 	
 	/** The game manager passed in from above. */
-	public GameManager gm;
+	public final GameManager gm;
 	
 	/** A flag storing whether we reset on load. */
 	private boolean resetOnLoad = true;
@@ -34,9 +34,6 @@ public class GamePlayScene implements GameScene {
 	private ArrayList<GamePlaySceneObject> gpsos;
 	/** The pointer to the main player. */
 	public Spaceship player;
-	
-	/** The file for the level itself. */
-	private final String LVLFILE = "res/level.lvl";
 	
 	/** This will store the keys we have down currently so we don't double count. */
 	private Set<Integer> kCodes;
@@ -75,7 +72,7 @@ public class GamePlayScene implements GameScene {
 			gm.pubVars.remove("Keys");
 			gm.pubVars.remove("KeysReq");
 			// Scene setup
-			gpsos = Parse.parseLvl(this, LVLFILE);
+			gpsos = Parse.parseLvl(this, "res/level.lvl");
 			player = (Spaceship) gpsos.get(0);
 			// Sort the objects by z value, so the ones with less get rendered first
 			gpsos.sort(new Comparator<GamePlaySceneObject>() {

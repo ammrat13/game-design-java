@@ -16,7 +16,7 @@ import java.util.Set;
 public class TestObject implements GamePlaySceneObject {
 	
 	/** The fixed position of the object. */
-	private Vec x;
+	private final Vec x;
 	
 	/**
 	 * Constructs the object.

@@ -22,7 +22,7 @@ import java.util.Set;
 public class PauseScene implements GameScene {
 	
 	/** The game manager passed in from above. */
-	private GameManager gm;
+	private final GameManager gm;
 	
 	/** The margins on the lose scene. */
 	private final int MAR = 30;
@@ -37,7 +37,7 @@ public class PauseScene implements GameScene {
 	private final Font FON = new Font(null, Font.BOLD, 10);
 	
 	/** The scale of the map as a decimal. */
-	private double mSC = 0.2;
+	private final double mSC = 0.2;
 	
 	/** This will store the keys we have down currently so we don't double count. */
 	private Set<Integer> kCodes;

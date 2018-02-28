@@ -38,7 +38,7 @@ public class GameManager extends JPanel implements KeyListener {
 	private GameScene active;
 	
 	/** Public variables. */
-	public HashMap<String, Object> pubVars = new HashMap<>();
+	public final HashMap<String, Object> pubVars = new HashMap<>();
 	
 	/**
 	 * Constructs the game manager. Sets the width, height, and current time,

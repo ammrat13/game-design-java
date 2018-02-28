@@ -16,7 +16,7 @@ import java.awt.image.BufferedImage;
 public class InstructionScene implements GameScene {
 	
 	/** The game manager passed in from above. */
-	private GameManager gm;
+	private final GameManager gm;
 	
 	/** The margins on the instructions scene. */
 	private final int MAR = 30;
@@ -29,7 +29,7 @@ public class InstructionScene implements GameScene {
 	private final Font TFON = new Font(null, Font.BOLD, 70);
 	
 	/** The font of the instructions. */
-	private final Font IFON = new Font(null, 0, 20);
+	private final Font IFON = new Font(null, Font.PLAIN, 20);
 	/** The instruction content. */
 	private final String INSTSTR = "Controls:\nUP: Accelerate    LEFT: Turn Left\nRIGHT: Turn Right    ESC: Pause/Exit\nQ: Quit (From pause)\n\nGet to the yellow exit after collecting all the keys.\nThe pause screen has a map.\nThe white line is your predicted path.\nLower scores are better.";
 	

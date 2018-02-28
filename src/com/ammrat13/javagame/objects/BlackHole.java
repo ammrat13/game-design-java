@@ -17,7 +17,7 @@ import java.util.Set;
 public class BlackHole implements GamePlaySceneObject {
 	
 	/** The gameplay scene passed in from above. */
-	private GamePlayScene gps;
+	private final GamePlayScene gps;
 	
 	/** The value specifying the dimensions of the black hole. */
 	private final int L = 50;
@@ -30,7 +30,7 @@ public class BlackHole implements GamePlaySceneObject {
 	public final double GM;
 	
 	/** The position of the object. */
-	private Vec x;
+	private final Vec x;
 	
 	/**
 	 * Constructs the black hole.

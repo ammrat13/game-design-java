@@ -16,9 +16,9 @@ public class Vec {
 	public static final Vec JHAT = new Vec(0,1);
 	
 	/** Stores the {@code x} component of the vector */
-	public double x;
+	public final double x;
 	/** Stores the {@code y} component of the vector */
-	public double y;
+	public final double y;
 	
 	/**
 	 * Constructs the vector.

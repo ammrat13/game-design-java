@@ -21,12 +21,12 @@ public class Key implements GamePlaySceneObject {
 	private final int ML = 5;
 	
 	/** The game play scene passed in from above. */
-	private GamePlayScene gps;
+	private final GamePlayScene gps;
 	
 	/** Whether or not this key has been collected. */
 	private boolean col;
 	/** The position of this key. */
-	private Vec x;
+	private final Vec x;
 	
 	public Key(GamePlayScene gps, Vec x, boolean c){
 		this.gps = gps;

@@ -18,7 +18,7 @@ import java.util.Set;
 public class TitleScene implements GameScene {
 	
 	/** The game manager passed in from above. */
-	private GameManager gm;
+	private final GameManager gm;
 	
 	/** The margins on the title scene. */
 	private final int MAR = 30;
@@ -41,11 +41,11 @@ public class TitleScene implements GameScene {
 	private final int AH = 30;
 	
 	/** The list of all the buttons we have. */
-	private String[] buts = new String[]{"Start Game", "How to Play"};
+	private final String[] buts = new String[]{"Start Game", "How to Play"};
 	/** The list of the scenes the buttons correspond to. */
-	private String[] butScen = new String[]{"GamePlayScene", "InstructionScene"};
+	private final String[] butScen = new String[]{"GamePlayScene", "InstructionScene"};
 	/** The list of offsets for the text in the buttons */
-	private Vec[] butOff = new Vec[]{new Vec(-110,15), new Vec(-120,15)};
+	private final Vec[] butOff = new Vec[]{new Vec(-110,15), new Vec(-120,15)};
 	/** Stores the index of the active button. */
 	private int actI = 0;
 	
