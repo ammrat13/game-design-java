@@ -4,6 +4,7 @@ import com.ammrat13.javagame.GameManager;
 import com.ammrat13.javagame.util.Sound;
 import com.ammrat13.javagame.util.Vec;
 
+import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -52,6 +53,8 @@ public class LoseScene implements GameScene {
 	
 	/** Stores the keys we have previously registered so we don't recount. */
 	private Set<Integer> kCodesDown = new HashSet<>();
+	/** Stores the sound clip we will play. */
+	private Clip winClip;
 	
 	/**
 	 * Constructs the scene. Takes the game manager as input.
@@ -77,7 +80,13 @@ public class LoseScene implements GameScene {
 	
 	/** {@inheritDoc} */
 	@Override
-	public void stop(){}
+	public void stop(){
+		if(winClip != null){
+			winClip.stop();
+			winClip.close();
+		}
+		winClip = null;
+	}
 	
 	/** {@inheritDoc} */
 	@Override

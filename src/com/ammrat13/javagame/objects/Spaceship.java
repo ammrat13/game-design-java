@@ -109,8 +109,10 @@ public class Spaceship implements GamePlaySceneObject {
 	/** {@inheritDoc} */
 	@Override
 	public void stop(){
-		if(firingSoundClip != null)
+		if(firingSoundClip != null) {
 			firingSoundClip.stop();
+			firingSoundClip.close();
+		}
 		firingSoundClip = null;
 	}
 	
