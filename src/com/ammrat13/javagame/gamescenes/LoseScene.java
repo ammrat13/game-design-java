@@ -54,7 +54,7 @@ public class LoseScene implements GameScene {
 	/** Stores the keys we have previously registered so we don't recount. */
 	private Set<Integer> kCodesDown = new HashSet<>();
 	/** Stores the sound clip we will play. */
-	private Clip winClip;
+	private Clip loseClip;
 	
 	/**
 	 * Constructs the scene. Takes the game manager as input.
@@ -74,18 +74,19 @@ public class LoseScene implements GameScene {
 		// Play the loss sound effect if the player has lost
 		if(gm.pubVars.containsKey("Lost")) {
 			gm.pubVars.remove("Lost");
-			Sound.getSoundClip("res/LossEffect.wav").start();
+			loseClip = Sound.getSoundClip("res/LossEffect.wav");
+			loseClip.start();
 		}
 	}
 	
 	/** {@inheritDoc} */
 	@Override
 	public void stop(){
-		if(winClip != null){
-			winClip.stop();
-			winClip.close();
+		if(loseClip != null){
+			loseClip.stop();
+			loseClip.close();
 		}
-		winClip = null;
+		loseClip = null;
 	}
 	
 	/** {@inheritDoc} */
